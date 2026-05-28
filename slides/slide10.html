@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  background: #FFFFFF; font-family: Arial, sans-serif;
+  display: flex;
+}
+.header-bar { position: absolute; top: 0; left: 0; width: 720pt; height: 4pt; background: #0052D9; }
+.title-area { position: absolute; top: 28pt; left: 44pt; }
+.left-col { position: absolute; top: 80pt; left: 44pt; width: 300pt; }
+.right-col { position: absolute; top: 80pt; right: 44pt; width: 300pt; }
+.sec-title {
+  color: #0052D9; font-size: 12pt; font-weight: bold; margin: 0 0 10pt 0;
+}
+.safe-item {
+  display: flex; gap: 8pt; margin-bottom: 10pt; align-items: flex-start;
+}
+.safe-icon {
+  background: #F0F5FF; border-radius: 50%; width: 28pt; height: 28pt; min-width: 28pt;
+  display: flex; align-items: center; justify-content: center;
+}
+.safe-text { flex: 1; }
+.safe-label { color: #1A1A1A; font-size: 10pt; font-weight: bold; margin: 0 0 2pt 0; }
+.safe-desc { color: #666666; font-size: 8pt; margin: 0; }
+.comp-item {
+  background: #F8FAFF; border-radius: 4pt; padding: 8pt 10pt; margin-bottom: 6pt;
+  border: 1pt solid #E0E8F5;
+}
+.comp-label { color: #1A1A1A; font-size: 9pt; font-weight: bold; margin: 0; }
+.comp-desc { color: #666666; font-size: 7.5pt; margin: 2pt 0 0 0; }
+</style>
+</head>
+<body>
+<div class="header-bar"></div>
+<div class="title-area">
+  <p style="color: #0052D9; font-size: 10pt; margin: 0;">06 / SECURITY</p>
+  <h1 style="color: #1A1A1A; font-size: 24pt; margin: 4pt 0 0 0;">数据安全与合规</h1>
+</div>
+<div class="left-col">
+  <p class="sec-title">三重安全机制</p>
+  <div class="safe-item">
+    <div class="safe-icon"><p style="color: #0052D9; font-size: 12pt; margin: 0; font-weight: bold;">1</p></div>
+    <div class="safe-text">
+      <p class="safe-label">本地执行</p>
+      <p class="safe-desc">所有文件处理在本地完成，原始文件从不离开用户电脑</p>
+    </div>
+  </div>
+  <div class="safe-item">
+    <div class="safe-icon"><p style="color: #0052D9; font-size: 12pt; margin: 0; font-weight: bold;">2</p></div>
+    <div class="safe-text">
+      <p class="safe-label">权限可控</p>
+      <p class="safe-desc">文件访问需用户授权，企业管理员可统一配置权限策略</p>
+    </div>
+  </div>
+  <div class="safe-item">
+    <div class="safe-icon"><p style="color: #0052D9; font-size: 12pt; margin: 0; font-weight: bold;">3</p></div>
+    <div class="safe-text">
+      <p class="safe-label">审计留痕</p>
+      <p class="safe-desc">每次执行生成唯一 TraceID，绑定真实员工账号，可追溯可审计</p>
+    </div>
+  </div>
+</div>
+<div class="right-col">
+  <p class="sec-title">合规认证</p>
+  <div class="comp-item">
+    <p class="comp-label">通过信通院 Claw 可信能力评估（5大维度57项指标）</p>
+  </div>
+  <div class="comp-item">
+    <p class="comp-label">通过信通院智能原生编码 IDE 评估 4+ 级</p>
+  </div>
+  <div class="comp-item">
+    <p class="comp-label">同源工具 CodeBuddy 自举验证</p>
+    <p class="comp-desc">新增代码 100% 由 AI 自举生成（Code 自举）</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  background: #FFFFFF; font-family: Arial, sans-serif;
+  display: flex;
+}
+.header-bar { position: absolute; top: 0; left: 0; width: 720pt; height: 4pt; background: #0052D9; }
+.title-area { position: absolute; top: 28pt; left: 44pt; }
+.grid {
+  position: absolute; top: 78pt; left: 44pt; right: 44pt;
+  display: flex; flex-wrap: wrap; gap: 10pt;
+}
+.scene-card {
+  width: 306pt; background: #F8FAFF; border-radius: 8pt; border: 1pt solid #E0E8F5;
+  padding: 12pt;
+}
+.scene-icon {
+  background: #0052D9; border-radius: 4pt; padding: 2pt 8pt; display: inline-block;
+}
+.scene-title {
+  color: #1A1A1A; font-size: 11pt; font-weight: bold; margin: 6pt 0 4pt 0;
+}
+.scene-desc {
+  color: #666666; font-size: 8pt; margin: 0 0 4pt 0;
+}
+.scene-flow {
+  color: #0052D9; font-size: 7.5pt; margin: 0;
+}
+.scene-value {
+  background: #F0FFF5; border-radius: 4pt; padding: 3pt 6pt; margin-top: 4pt;
+  color: #008844; font-size: 7pt; font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="header-bar"></div>
+<div class="title-area">
+  <p style="color: #0052D9; font-size: 10pt; margin: 0;">04 / ENTERPRISE SCENARIOS</p>
+  <h1 style="color: #1A1A1A; font-size: 24pt; margin: 4pt 0 0 0;">企业版场景实践（下）</h1>
+</div>
+<div class="grid">
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">培训</p></div>
+    <p class="scene-title">新人培训与岗位辅导</p>
+    <p class="scene-desc">培训资料很多但不好找不成体系，培训结束后仍不会实操，带教依赖老员工一对一答疑，新人高频问题重复出现</p>
+    <p class="scene-flow">1. 乐享沉淀岗位 SOP/流程规范/典型案例/常见错误/模板标准口径/培训资料与题库 → 2. 新人遇到问题通过知识库快速找到答案 → 3. WorkBuddy 生成学习清单/每周学习计划/错题总结/岗位周报/导师跟进建议 → 4. 把培训从静态课件变成动态辅导 → 5. 把组织经验留在系统里</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">缩短新人上岗周期 | 降低培训和带教成本 | 减少基础问题反复答疑 | 培训从静态课件变动态辅导</p></div>
+  </div>
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">管理</p></div>
+    <p class="scene-title">管理层周报 / 例会 / 经营复盘</p>
+    <p class="scene-desc">信息散落在会议纪要/项目材料/沟通记录里，每周花大量时间收集整理，周报和复盘高度依赖手工搬运</p>
+    <p class="scene-flow">1. 乐享沉淀日常经营内容：项目纪要/复盘文档/制度更新/风险记录/业务分析/日报周报素材 → 2. 管理者通过 WorkBuddy 发起任务 → 3. WorkBuddy 生成周报/例会提纲/跟进行动清单/经营摘要/风险项列表 → 4. 接入企微支持结果推送和远程办公</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">节省管理层整理时间 | 强化经营信息统一口径 | 提高例会和复盘效率 | 知识沉淀进入经营管理闭环</p></div>
+  </div>
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">远程</p></div>
+    <p class="scene-title">移动办公 / 出差办公助手</p>
+    <p class="scene-desc">人在外面资料在公司电脑里，时间碎片化需要用手机快速处理工作，找人代查资料效率低还打断别人</p>
+    <p class="scene-flow">1. 企业知识统一沉淀在乐享中 → 2. 人在外部通过企微向 WorkBuddy 下发任务 → 3. WorkBuddy 调用知识并在本地电脑完成操作，结果传回企微 → 4. 示例：企微发起"把客户X的最新案例发给我，生成跟进邮件" → 调用乐享资料 → 整理邮件处理文件 → 结果推回企微</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">移动办公效率提升 | 减少跨设备跨人协调成本 | 出差岗位随时获得组织知识支持</p></div>
+  </div>
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">合规</p></div>
+    <p class="scene-title">制度 / 合规 / 专业支持</p>
+    <p class="scene-desc">内容是否准确、权限是否可控、版本是否最新、使用过程是否可追溯，只有 Agent 没有知识治理底座客户容易担心风险</p>
+    <p class="scene-flow">1. 乐享沉淀制度规范/合规要求/审批规则/专业模板/历史案例/审核意见/业务指引 → 2. 通过权限和有效期控制保证不同角色看到正确、有效、可授权的内容 → 3. WorkBuddy 在受控知识基础上生成制度答复草稿/审核清单/材料整理初稿/内部通知/执行提醒 → 4. AI 使用建立在合规治理基础上</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">减少错用制度和版本错误 | 提高专业岗位规范性 | 降低业务风险 | AI 建立在合规治理基础上</p></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  background: #FFFFFF; font-family: Arial, sans-serif;
+  display: flex;
+}
+.header-bar { position: absolute; top: 0; left: 0; width: 720pt; height: 4pt; background: #0052D9; }
+.title-area { position: absolute; top: 28pt; left: 44pt; }
+.content-area {
+  position: absolute; top: 80pt; left: 44pt; right: 44pt;
+}
+.model-grid {
+  display: flex; flex-wrap: wrap; gap: 10pt; margin-top: 10pt;
+}
+.model-card {
+  width: 148pt; background: #F8FAFF; border-radius: 6pt; border: 1pt solid #E0E8F5;
+  padding: 10pt;
+}
+.model-name {
+  color: #0052D9; font-size: 11pt; font-weight: bold; margin: 0 0 3pt 0;
+}
+.model-feat {
+  color: #1A1A1A; font-size: 8pt; margin: 0 0 2pt 0;
+}
+.model-scene {
+  color: #666666; font-size: 7.5pt; margin: 0;
+}
+.note-box {
+  background: #F0FFF5; border-left: 4pt solid #00A870; border-radius: 0 4pt 4pt 0;
+  padding: 8pt 14pt; margin-top: 12pt;
+}
+</style>
+</head>
+<body>
+<div class="header-bar"></div>
+<div class="title-area">
+  <p style="color: #0052D9; font-size: 10pt; margin: 0;">02 / CORE CAPABILITIES</p>
+  <h1 style="color: #1A1A1A; font-size: 24pt; margin: 4pt 0 0 0;">多模型自由切换</h1>
+</div>
+<div class="content-area">
+  <p style="color: #666666; font-size: 10pt; margin: 0 0 6pt 0;">采用模型无关设计，支持五大主流大模型自由切换，按需选择最优模型</p>
+  <div class="model-grid">
+    <div class="model-card">
+      <p class="model-name">腾讯混元</p>
+      <p class="model-feat">强大中文理解、多模态处理</p>
+      <p class="model-scene">报告撰写、文案生成、数据分析</p>
+    </div>
+    <div class="model-card">
+      <p class="model-name">DeepSeek-V3/R1</p>
+      <p class="model-feat">推理能力强、精度高</p>
+      <p class="model-scene">复杂架构设计、调试任务</p>
+    </div>
+    <div class="model-card">
+      <p class="model-name">DeepSeek-V3.2</p>
+      <p class="model-feat">响应快、成本低</p>
+      <p class="model-scene">日常简单查询、代码补全</p>
+    </div>
+    <div class="model-card">
+      <p class="model-name">GLM-5 系列</p>
+      <p class="model-feat">中文语义理解优秀</p>
+      <p class="model-scene">中文语境复杂语义处理</p>
+    </div>
+    <div class="model-card">
+      <p class="model-name">Kimi-K2 系列</p>
+      <p class="model-feat">超长上下文（256K）</p>
+      <p class="model-scene">超长文档阅读、多文档分析</p>
+    </div>
+    <div class="model-card">
+      <p class="model-name">MiniMax-M2 系列</p>
+      <p class="model-feat">多媒体内容生成</p>
+      <p class="model-scene">内容创作、角色扮演</p>
+    </div>
+  </div>
+  <div class="note-box">
+    <p style="color: #00A870; font-size: 9pt; margin: 0;"><b>企业微信/QQ 3 步完成连接配置，手机端轻松发指令，电脑端自动执行</b></p>
+  </div>
+</div>
+</body>
+</html>

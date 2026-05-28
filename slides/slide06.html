@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  background: #FFFFFF; font-family: Arial, sans-serif;
+  display: flex;
+}
+.header-bar { position: absolute; top: 0; left: 0; width: 720pt; height: 4pt; background: #0052D9; }
+.title-area { position: absolute; top: 28pt; left: 44pt; }
+.left-col { position: absolute; top: 80pt; left: 44pt; width: 320pt; }
+.right-col { position: absolute; top: 80pt; right: 44pt; width: 290pt; }
+.step-item {
+  display: flex; gap: 8pt; margin-bottom: 8pt; align-items: flex-start;
+}
+.step-num {
+  background: #0052D9; border-radius: 50%; width: 20pt; height: 20pt; min-width: 20pt;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-text { flex: 1; }
+.result-box {
+  background: #F0FFF5; border: 1pt solid #C6E7D6; border-radius: 8pt;
+  padding: 14pt; margin-top: 10pt;
+}
+.metric {
+  display: flex; gap: 8pt; margin-top: 8pt;
+}
+.metric-card {
+  flex: 1; background: #F0F5FF; border-radius: 6pt; padding: 10pt; text-align: center;
+}
+.metric-num { color: #0052D9; font-size: 20pt; font-weight: bold; margin: 0; }
+.metric-label { color: #666666; font-size: 8pt; margin: 2pt 0 0 0; }
+.link-box {
+  background: #F8FAFF; border-radius: 4pt; padding: 8pt; margin-top: 8pt;
+  border: 1pt solid #E0E8F5;
+}
+</style>
+</head>
+<body>
+<div class="header-bar"></div>
+<div class="title-area">
+  <p style="color: #0052D9; font-size: 10pt; margin: 0;">04 / SCENARIOS</p>
+  <h1 style="color: #1A1A1A; font-size: 24pt; margin: 4pt 0 0 0;">场景一：高效信息沟通</h1>
+</div>
+<div class="left-col">
+  <p style="color: #666666; font-size: 9pt; margin: 0 0 8pt 0;">周一早上9点，员工打开邮箱发现38封未读邮件，包含领导催进度、客户报价、HR表格、项目协作、会议通知等不同类型事项。</p>
+  <p style="color: #1A1A1A; font-size: 10pt; font-weight: bold; margin: 10pt 0 6pt 0;">WorkBuddy 做法</p>
+  <div class="step-item">
+    <div class="step-num"><p style="color: #FFFFFF; font-size: 9pt; margin: 0; font-weight: bold;">1</p></div>
+    <div class="step-text"><p style="color: #1A1A1A; font-size: 8.5pt; margin: 0;">读取未读邮件汇总文件，识别每封邮件的业务含义和处理责任</p></div>
+  </div>
+  <div class="step-item">
+    <div class="step-num"><p style="color: #FFFFFF; font-size: 9pt; margin: 0; font-weight: bold;">2</p></div>
+    <div class="step-text"><p style="color: #1A1A1A; font-size: 8.5pt; margin: 0;">将38封邮件分为"必须亲自回/助理代回/仅知会/可忽略"4类</p></div>
+  </div>
+  <div class="step-item">
+    <div class="step-num"><p style="color: #FFFFFF; font-size: 9pt; margin: 0; font-weight: bold;">3</p></div>
+    <div class="step-text"><p style="color: #1A1A1A; font-size: 8.5pt; margin: 0;">为"必须亲自回"的邮件生成专业中文回复草稿</p></div>
+  </div>
+  <div class="step-item">
+    <div class="step-num"><p style="color: #FFFFFF; font-size: 9pt; margin: 0; font-weight: bold;">4</p></div>
+    <div class="step-text"><p style="color: #1A1A1A; font-size: 8.5pt; margin: 0;">处理重点英文客户邮件：先生成中文审稿，再翻译成商务英语版</p></div>
+  </div>
+  <div class="step-item">
+    <div class="step-num"><p style="color: #FFFFFF; font-size: 9pt; margin: 0; font-weight: bold;">5</p></div>
+    <div class="step-text"><p style="color: #1A1A1A; font-size: 8.5pt; margin: 0;">员工确认后可继续完成发送或回写</p></div>
+  </div>
+</div>
+<div class="right-col">
+  <div class="result-box">
+    <p style="color: #00A870; font-size: 10pt; font-weight: bold; margin: 0;">提效效果</p>
+    <div class="metric">
+      <div class="metric-card">
+        <p class="metric-num">2-3h</p>
+        <p class="metric-label">传统方式</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-num" style="color: #00A870;">10-20m</p>
+        <p class="metric-label">WorkBuddy</p>
+      </div>
+    </div>
+    <p style="color: #1A1A1A; font-size: 8pt; margin: 6pt 0 0 0; text-align: center;">员工从<b>执行者</b>变成<b>审核者</b></p>
+  </div>
+  <div class="link-box">
+    <p style="color: #0052D9; font-size: 8pt; font-weight: bold; margin: 0 0 4pt 0;">素材链接</p>
+    <ul style="margin: 0; padding-left: 14pt;">
+      <li style="color: #666666; font-size: 7.5pt;">WorkBuddy办公场景01_高效信息沟通_最佳实践案例</li>
+      <li style="color: #666666; font-size: 7.5pt;">WorkBuddy&办公场景01：高效信息沟通（视频）</li>
+      <li style="color: #666666; font-size: 7.5pt;">传统AI聊天 vs WorkBuddy干活_最佳实践案例</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

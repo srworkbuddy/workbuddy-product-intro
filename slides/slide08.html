@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  background: #FFFFFF; font-family: Arial, sans-serif;
+  display: flex;
+}
+.header-bar { position: absolute; top: 0; left: 0; width: 720pt; height: 4pt; background: #0052D9; }
+.title-area { position: absolute; top: 28pt; left: 44pt; }
+.grid {
+  position: absolute; top: 78pt; left: 44pt; right: 44pt;
+  display: flex; flex-wrap: wrap; gap: 10pt;
+}
+.scene-card {
+  width: 306pt; background: #F8FAFF; border-radius: 8pt; border: 1pt solid #E0E8F5;
+  padding: 12pt;
+}
+.scene-icon {
+  background: #0052D9; border-radius: 4pt; padding: 2pt 8pt; display: inline-block;
+}
+.scene-title {
+  color: #1A1A1A; font-size: 11pt; font-weight: bold; margin: 6pt 0 4pt 0;
+}
+.scene-desc {
+  color: #666666; font-size: 8pt; margin: 0 0 4pt 0;
+}
+.scene-flow {
+  color: #0052D9; font-size: 7.5pt; margin: 0;
+}
+.scene-value {
+  background: #F0FFF5; border-radius: 4pt; padding: 3pt 6pt; margin-top: 4pt;
+  color: #008844; font-size: 7pt; font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="header-bar"></div>
+<div class="title-area">
+  <p style="color: #0052D9; font-size: 10pt; margin: 0;">04 / ENTERPRISE SCENARIOS</p>
+  <h1 style="color: #1A1A1A; font-size: 24pt; margin: 4pt 0 0 0;">企业版场景实践（上）</h1>
+</div>
+<div class="grid">
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">售后</p></div>
+    <p class="scene-title">售后 / 客服问题处理</p>
+    <p class="scene-desc">客服培训慢，复杂问题升级多，历史案例难以复用，新人不会查也不知道哪个答案对，前线问题没有被反哺成组织知识</p>
+    <p class="scene-flow">1. 售后同学打开 WorkBuddy 处理客户问题 → 2. 调用乐享知识库 FAQ/故障案例/操作手册/话术模板 → 3. 售后数字员工整理可能原因、排查顺序和回复草稿 → 4. 需要升级时加入 Teams 协同 → 5. 排查记录和新案例沉淀回知识库 → 6. 沉淀的案例和 SOP 再赋能下次售后数字员工</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">客户回复更快 | 排查路径更标准 | 新人更容易上手 | 售后经验从个人能力变组织能力</p></div>
+  </div>
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">销售</p></div>
+    <p class="scene-title">销售 / 售前材料快速响应</p>
+    <p class="scene-desc">客户需求一来资料找不到或版本不统一，不同销售讲法不一致影响专业形象，售前专家被反复拉来回答基础问题</p>
+    <p class="scene-flow">1. 乐享统一沉淀产品资料/行业方案/成功案例/招投标模板/异议回复/报价规则 → 2. 销售在企微或桌面侧向 WorkBuddy 发起任务 → 3. 输出客户方案初稿/沟通邮件/拜访提纲/案例摘要/纪要与跟进清单 → 4. Teams 协同修改审阅 → 5. 定稿保存腾讯文档，沉淀到销售弹药库 → 6. 乐享"找准内容"，WorkBuddy"变成输出"</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">客户响应速度提升 | 销售口径一致性提高 | 资深售前重复支持减少 | 方案制作时间缩短</p></div>
+  </div>
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">会议</p></div>
+    <p class="scene-title">会议到任务闭环</p>
+    <p class="scene-desc">会议纪要有了，但行动项没人跟，责任人和后续进展容易断，会后闭环全靠人追</p>
+    <p class="scene-flow">1. 会议记录/聊天记录/语音转写进入 WorkBuddy → 2. 数字员工提炼结论/行动项/责任人/DDL/风险项 → 3. Teams 把行动项分配给成员和数字员工 → 4. 自动化任务定期提醒、跟踪和汇总进展 → 5. 复盘和决策沉淀为团队资产 → 6. 下次会议可直接复用组织记忆</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">会议不再止于纪要 | 行动项持续推进 | 任务状态可见 | 团队协同从沟通走向执行</p></div>
+  </div>
+  <div class="scene-card">
+    <div class="scene-icon"><p style="color: #FFFFFF; font-size: 8pt; margin: 0;">知识</p></div>
+    <p class="scene-title">企业知识运营</p>
+    <p class="scene-desc">知识散在文档/网盘/乐享/业务系统/群聊里，员工找不到、找不准，合规敏感岗位担心 AI 乱答、越权、引用过期内容</p>
+    <p class="scene-flow">1. 员工在 WorkBuddy 中直接询问制度/流程/产品资料/项目经验 → 2. Agent Suite 调用腾讯文档/网盘/乐享 → 3. 乐享负责知识治理，确保可信、可控、可追溯 → 4. 数字员工完成问答/总结/分析/材料生成 → 5. 新问题和知识缺口沉淀为企业 AI 资产 → 6. 资产继续赋能数字员工</p>
+    <div class="scene-value"><p style="color: #008844; font-size: 7pt; font-weight: bold; margin: 0;">知识找得到 | 回答答得准 | 权限管得住 | 结果可追溯 | 企业知识越用越好</p></div>
+  </div>
+</div>
+</body>
+</html>

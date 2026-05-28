@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkBuddy 产品介绍长图</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:800px;margin:0 auto;background:#F5F7FA;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+:root{--blue:#0052D9;--blue-light:#E8F0FE;--green:#00A870;--bg:#F5F7FA;--card:#fff;--radius:12px;--shadow:0 4px 20px rgba(0,0,0,.08)}
+
+/* === Hero === */
+.hero{background:linear-gradient(135deg,#001B44 0%,#003399 50%,#0052D9 100%);padding:56px 48px 44px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,168,112,.12) 0%,transparent 60%);border-radius:50%}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 16px;font-size:12px;color:#8CB4FF;letter-spacing:2px;margin-bottom:18px}
+.hero h1{font-size:48px;font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:10px}
+.hero .sub{font-size:20px;color:#8CB4FF;margin-bottom:6px}
+.hero .slogan{font-size:24px;font-weight:700;color:var(--green);margin:14px 0}
+.hero .meta{font-size:13px;color:#667FA3;margin-top:6px}
+
+/* === Section === */
+.section{padding:32px 48px}
+.section-label{font-size:11px;letter-spacing:2px;color:var(--blue);font-weight:600;text-transform:uppercase;margin-bottom:6px}
+.section-title{font-size:22px;font-weight:800;margin-bottom:16px}
+
+/* === Core Value === */
+.core-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.core-item{background:var(--card);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04)}
+.core-item .ci-label{font-size:11px;color:var(--green);font-weight:700;margin-bottom:4px;letter-spacing:.5px}
+.core-item .ci-text{font-size:13px;color:#666;line-height:1.6}
+
+/* === Scenarios === */
+.domain-block{margin-bottom:18px}
+.domain-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:12px 18px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.domain-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;color:#fff}
+.domain-name{font-size:15px;font-weight:800}
+.domain-count{font-size:11px;color:#999;margin-left:auto}
+
+.scene-list{display:flex;flex-direction:column;gap:6px}
+.scene-item{background:var(--card);border-radius:8px;padding:10px 14px;border-left:3px solid #ddd;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.scene-item .si-title{font-size:13px;font-weight:700;margin-bottom:2px}
+.scene-item .si-desc{font-size:11.5px;color:#666;line-height:1.5}
+.scene-item .si-effect{font-size:11px;color:var(--green);margin-top:3px;font-weight:600}
+
+/* domain colors - matching interactive version */
+.cat-office{background:linear-gradient(135deg,#E8F0FE,#D4E6FF);border-left:4px solid #0052D9;color:#0052D9}
+.cat-office .domain-icon{background:linear-gradient(135deg,#0052D9,#3B7BFF)}
+.cat-office .scene-item{border-left-color:#0052D9}
+
+.cat-dev{background:linear-gradient(135deg,#E8EAF6,#C5CAE9);border-left:4px solid #303F9F;color:#303F9F}
+.cat-dev .domain-icon{background:linear-gradient(135deg,#303F9F,#5C6BC0)}
+.cat-dev .scene-item{border-left-color:#303F9F}
+
+.cat-hr{background:linear-gradient(135deg,#E0F7FA,#C8EDF1);border-left:4px solid #00897B;color:#00897B}
+.cat-hr .domain-icon{background:linear-gradient(135deg,#00897B,#26A69A)}
+.cat-hr .scene-item{border-left-color:#00897B}
+
+.cat-finance{background:linear-gradient(135deg,#FFF3E0,#FFE8C4);border-left:4px solid #E65100;color:#E65100}
+.cat-finance .domain-icon{background:linear-gradient(135deg,#E65100,#FF8A50)}
+.cat-finance .scene-item{border-left-color:#E65100}
+
+.cat-legal{background:linear-gradient(135deg,#FCE4EC,#F8C8D8);border-left:4px solid #C62828;color:#C62828}
+.cat-legal .domain-icon{background:linear-gradient(135deg,#C62828,#EF5350)}
+.cat-legal .scene-item{border-left-color:#C62828}
+
+.cat-marketing{background:linear-gradient(135deg,#F3E5F5,#E4CCE8);border-left:4px solid #8E24AA;color:#8E24AA}
+.cat-marketing .domain-icon{background:linear-gradient(135deg,#8E24AA,#BA68C8)}
+.cat-marketing .scene-item{border-left-color:#8E24AA}
+
+.cat-sales{background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border-left:4px solid #2E7D32;color:#2E7D32}
+.cat-sales .domain-icon{background:linear-gradient(135deg,#2E7D32,#66BB6A)}
+.cat-sales .scene-item{border-left-color:#2E7D32}
+
+.cat-edu{background:linear-gradient(135deg,#FFF8E1,#FFECB3);border-left:4px solid #F9A825;color:#E68A00}
+.cat-edu .domain-icon{background:linear-gradient(135deg,#F9A825,#FFD54F)}
+.cat-edu .scene-item{border-left-color:#F9A825}
+
+.cat-medical{background:linear-gradient(135deg,#E0F2F1,#B2DFDB);border-left:4px solid #00695C;color:#00695C}
+.cat-medical .domain-icon{background:linear-gradient(135deg,#00695C,#4DB6AC)}
+.cat-medical .scene-item{border-left-color:#00695C}
+
+/* === Cases === */
+.case-grid{display:flex;flex-direction:column;gap:10px}
+.case-card{background:var(--card);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04);position:relative;border-top:3px solid var(--blue)}
+.case-num{font-size:11px;color:var(--blue);font-weight:700;letter-spacing:1px;margin-bottom:4px}
+.case-title{font-size:14px;font-weight:800;margin-bottom:8px}
+.case-row{font-size:12px;line-height:1.6;margin-bottom:3px;color:#555}
+.case-row b{margin-right:6px}
+.case-metric{margin-top:8px;font-size:12px;color:var(--blue);font-weight:600;padding:6px 12px;background:var(--blue-light);border-radius:6px;display:inline-block}
+
+/* === Footer === */
+.footer{background:#fff;padding:28px 48px;text-align:center;border-top:1px solid #eee}
+.footer .qr-hint{font-size:14px;color:#666;margin-bottom:8px}
+.footer .link-box{display:inline-block;background:var(--blue-light);border:1px solid rgba(0,82,217,.15);border-radius:10px;padding:10px 24px;margin-top:6px}
+.footer .link-box a{color:var(--blue);text-decoration:none;font-size:13px;font-weight:600}
+.footer .copyright{font-size:11px;color:#bbb;margin-top:14px}
+</style>
+</head>
+<body>
+
+<!-- ====== HERO ====== -->
+<div class="hero">
+  <div class="hero-badge">TENCENT CSIG</div>
+  <h1>WorkBuddy</h1>
+  <div class="sub">你说一句话，它替你把活干了</div>
+  <div class="slogan">不是聊天框，是执行者</div>
+  <div class="meta">腾讯 CSIG · 2026年5月</div>
+</div>
+
+<!-- ====== 核心价值 ====== -->
+<div class="section">
+  <div class="section-label">Why Different</div>
+  <div class="section-title">能干活，不只是聊天</div>
+  <div class="core-grid">
+    <div class="core-item">
+      <div class="ci-label">交付物，不是参考答案</div>
+      <div class="ci-text">给你PPT文件、分析报告、带标注的合同——直接用</div>
+    </div>
+    <div class="core-item">
+      <div class="ci-label">五大模型随意切</div>
+      <div class="ci-text">混元/DeepSeek/GLM-5/Kimi K2/MiniMax M2，哪个适合用哪个</div>
+    </div>
+    <div class="core-item">
+      <div class="ci-label">手机也能指挥</div>
+      <div class="ci-text">企微发一句话，电脑端自动干活，结果回传手机</div>
+    </div>
+    <div class="core-item">
+      <div class="ci-label">三大底座一体调用</div>
+      <div class="ci-text">腾讯文档 + 腾讯网盘 + 腾讯乐享，不用切来切去</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 使用场景 ====== -->
+<div class="section" style="padding-top:16px">
+  <div class="section-label">Scenarios</div>
+  <div class="section-title">9 大业务域 · 18 个落地场景</div>
+
+  <!-- 通用办公 -->
+  <div class="domain-block">
+    <div class="domain-header cat-office">
+      <div class="domain-icon">📋</div>
+      <div class="domain-name">通用办公</div>
+      <div class="domain-count">7 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">邮件处理</div><div class="si-desc">38封未读邮件一键分类、草拟回复、翻译英文邮件</div><div class="si-effect">处理时间 ↓70% | 零遗漏分类</div></div>
+      <div class="scene-item"><div class="si-title">移动办公</div><div class="si-desc">企微一句话指令远程操作，结果自动回传</div><div class="si-effect">手机即指挥中心 | 随时随地触发</div></div>
+      <div class="scene-item"><div class="si-title">PPT 生成</div><div class="si-desc">一句话生成商务风格PPT，10页20分钟搞定</div><div class="si-effect">PPT 10页→20min | 找文件秒级</div></div>
+      <div class="scene-item"><div class="si-title">自动化任务</div><div class="si-desc">定时跑数据/出报告/推企微，7×24不用人盯</div><div class="si-effect">7×24自动执行 | 0人工干预</div></div>
+      <div class="scene-item"><div class="si-title">会议纪要闭环</div><div class="si-desc">录音→纪要→文档→通知→待办，一条龙</div><div class="si-effect">纪要 1h→5min | 待办自动跟踪</div></div>
+      <div class="scene-item"><div class="si-title">数据分析</div><div class="si-desc">Excel清洗+多表关联+图表，一句话出分析</div><div class="si-effect">分析30min→30s | 图表自动生成</div></div>
+      <div class="scene-item"><div class="si-title">自动化工单处理</div><div class="si-desc">口述一句话→自动识别类型/优先级→填单+派发；售后工单定时汇总分类</div><div class="si-effect">7-12步→1句指令3秒执行 | 效率提升80%+</div></div>
+    </div>
+  </div>
+
+  <!-- 研发技术 -->
+  <div class="domain-block">
+    <div class="domain-header cat-dev">
+      <div class="domain-icon">💻</div>
+      <div class="domain-name">研发技术</div>
+      <div class="domain-count">2 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">代码生成 / 审查 / Bug 修复</div><div class="si-desc">读代码目录→扫描漏洞→定位Bug→给修复方案</div><div class="si-effect">审查效率翻倍 | Bug定位减半</div></div>
+      <div class="scene-item"><div class="si-title">PRD 生成</div><div class="si-desc">散落讨论和纪要→结构化需求文档，3天→半天</div><div class="si-effect">PRD产出 3天→半天 | 格式规范统一</div></div>
+    </div>
+  </div>
+
+  <!-- 人力资源 -->
+  <div class="domain-block">
+    <div class="domain-header cat-hr">
+      <div class="domain-icon">👥</div>
+      <div class="domain-name">人力资源</div>
+      <div class="domain-count">2 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">简历筛选</div><div class="si-desc">AI按4维度评分+录用建议</div><div class="si-effect">筛选5h→30min | 准确率70%→95%</div></div>
+      <div class="scene-item"><div class="si-title">入职培训 <span style="font-size:10px;background:linear-gradient(135deg,#FFD54F,#FFB300);color:#333;padding:1px 5px;border-radius:3px;margin-left:3px">乐享</span></div><div class="si-desc">乐享沉淀培训知识→WB生成培训计划+学习路径+考试题</div><div class="si-effect">培训准备 3天→2h | 知识可持续复用</div></div>
+    </div>
+  </div>
+
+  <!-- 财务 -->
+  <div class="domain-block">
+    <div class="domain-header cat-finance">
+      <div class="domain-icon">💰</div>
+      <div class="domain-name">财务</div>
+      <div class="domain-count">1 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">报表 / 报销</div><div class="si-desc">多源数据自动汇总→异常标注→报表生成</div><div class="si-effect">报表 天级→小时级 | 异常自动标注</div></div>
+    </div>
+  </div>
+
+  <!-- 法务合规 -->
+  <div class="domain-block">
+    <div class="domain-header cat-legal">
+      <div class="domain-icon">⚖️</div>
+      <div class="domain-name">法务合规</div>
+      <div class="domain-count">1 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">合同评审</div><div class="si-desc">上传合同→8大维度逐条审→风险红黄绿标注→修改建议</div><div class="si-effect">评审 2h→15min | 风险条款零遗漏</div></div>
+    </div>
+  </div>
+
+  <!-- 运营市场 -->
+  <div class="domain-block">
+    <div class="domain-header cat-marketing">
+      <div class="domain-icon">📢</div>
+      <div class="domain-name">运营市场</div>
+      <div class="domain-count">2 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">内容创作</div><div class="si-desc">产品图→海报/主图视频/详情页一条龙</div><div class="si-effect">3人团队→1人+AI | 全链路AI产出</div></div>
+      <div class="scene-item"><div class="si-title">竞品分析 <span style="font-size:10px;background:linear-gradient(135deg,#FFD54F,#FFB300);color:#333;padding:1px 5px;border-radius:3px;margin-left:3px">乐享</span></div><div class="si-desc">乐享沉淀行业报告→WB自动搜索更新→输出竞品对比表</div><div class="si-effect">监测 4h→20min | 洞察自动提炼</div></div>
+    </div>
+  </div>
+
+  <!-- 销售后 -->
+  <div class="domain-block">
+    <div class="domain-header cat-sales">
+      <div class="domain-icon">🤝</div>
+      <div class="domain-name">销售</div>
+      <div class="domain-count">1 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">售前 / 售后 <span style="font-size:10px;background:linear-gradient(135deg,#FFD54F,#FFB300);color:#333;padding:1px 5px;border-radius:3px;margin-left:3px">乐享</span></div><div class="si-desc">乐享统一沉淀资料→销售一句话拿方案→售后自动整理回复草稿</div><div class="si-effect">方案产出 小时级→分钟级 | 案例持续复用</div></div>
+    </div>
+  </div>
+
+  <!-- 教育 -->
+  <div class="domain-block">
+    <div class="domain-header cat-edu">
+      <div class="domain-icon">🎓</div>
+      <div class="domain-name">教育与知识管理</div>
+      <div class="domain-count">2 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">备课 / 出题 / 课件</div><div class="si-desc">课文→自动出题+答案→成绩分析→Word一键转PPT</div><div class="si-effect">出题1h→5min | 备课减半</div></div>
+      <div class="scene-item"><div class="si-title">企业知识运营 <span style="font-size:10px;background:linear-gradient(135deg,#FFD54F,#FFB300);color:#333;padding:1px 5px;border-radius:3px;margin-left:3px">乐享</span></div><div class="si-desc">Agent Suite三大底座一体调用，直接问制度流程产品资料</div><div class="si-effect">知识查找 分钟→秒级 | 合规可追溯</div></div>
+    </div>
+  </div>
+
+  <!-- 医疗 -->
+  <div class="domain-block">
+    <div class="domain-header cat-medical">
+      <div class="domain-icon">🏥</div>
+      <div class="domain-name">医疗行业</div>
+      <div class="domain-count">1 场景</div>
+    </div>
+    <div class="scene-list">
+      <div class="scene-item"><div class="si-title">药品说明书</div><div class="si-desc">中康科技入驻Skill商店，专业术语→"用药大白话"</div><div class="si-effect">MedBench/CMB双榜第一 | 覆盖4.1亿消费者</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 使用案例 ====== -->
+<div class="section">
+  <div class="section-label">Use Cases</div>
+  <div class="section-title">4 个已落地案例</div>
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-num">CASE 01</div>
+      <div class="case-title">新加坡团队 — AI 简历筛选提效 90%</div>
+      <div class="case-row"><b style="color:#C62828">痛点</b>每月200+简历，占HR 60%以上时间</div>
+      <div class="case-row"><b style="color:#00A870">方案</b>AI初筛+人工复核，4维度逐项评分</div>
+      <div class="case-metric">筛选5h→30min | 准确率70%→95%</div>
+    </div>
+    <div class="case-card">
+      <div class="case-num">CASE 02</div>
+      <div class="case-title">中康科技 — 医疗行业首个 Skill 落地</div>
+      <div class="case-row"><b style="color:#C62828">痛点</b>药品说明书面向专业人群，普通人看不懂</div>
+      <div class="case-row"><b style="color:#00A870">方案</b>卓睦鸟大模型封装为AI Skill，药品名→用药大白话</div>
+      <div class="case-metric">MedBench/CMB双榜第一 | 覆盖4.1亿消费者</div>
+    </div>
+    <div class="case-card">
+      <div class="case-num">CASE 03</div>
+      <div class="case-title">金碧物业 — 1 句话 3 秒出工单</div>
+      <div class="case-row"><b style="color:#C62828">痛点</b>工单创建7-12步操作，最长120秒</div>
+      <div class="case-row"><b style="color:#00A870">方案</b>业务流程封装为Skill，口述→3秒自动创建并派发</div>
+      <div class="case-metric">工单效率↑80% | 7-12步→1句话3秒</div>
+    </div>
+    <div class="case-card">
+      <div class="case-num">CASE 04</div>
+      <div class="case-title">一人店铺 — AI 数字工作室全链路</div>
+      <div class="case-row"><b style="color:#C62828">痛点</b>一个人做电商内容，需要3人团队</div>
+      <div class="case-row"><b style="color:#00A870">方案</b>三套AI工厂流水线串联，从产品图到店铺内容一条龙</div>
+      <div class="case-metric">3人团队→1人+AI | 海报+视频+详情页全搞定</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Footer ====== -->
+<div class="footer">
+  <div class="qr-hint">📱 查看完整交互版产品介绍</div>
+  <div class="link-box">
+    <a href="#">🔗 WorkBuddy 产品介绍交互版</a>
+  </div>
+  <div class="copyright">腾讯 CSIG · WorkBuddy · 2026年5月</div>
+</div>
+
+</body>
+</html>

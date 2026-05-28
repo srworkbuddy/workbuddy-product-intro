@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkBuddy 产品介绍</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#0052D9;--blue-light:#E8F0FE;--dark:#1A1A1A;--gray:#666;--green:#00A870;--bg:#F5F7FA;--card:#fff;--radius:12px;--shadow:0 4px 20px rgba(0,0,0,.08)}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--dark);background:var(--bg);line-height:1.6;overflow-x:hidden}
+
+/* Navigation */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 24px;transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 2px 16px rgba(0,0,0,.1)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-brand{font-size:18px;font-weight:700;color:var(--blue);letter-spacing:-.5px}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 14px;border-radius:8px;font-size:13px;color:var(--gray);text-decoration:none;transition:all .2s;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);background:var(--blue-light)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#001B44 0%,#003399 50%,#0052D9 100%);position:relative;overflow:hidden;padding:80px 24px}
+.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(0,168,112,.12) 0%,transparent 60%);animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.hero-content{text-align:center;max-width:800px;z-index:1}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:6px 20px;color:#8CB4FF;font-size:13px;margin-bottom:24px;backdrop-filter:blur(4px)}
+.hero h1{font-size:64px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-2px}
+.hero p{font-size:22px;color:#8CB4FF;margin-bottom:8px}
+.hero-slogan{font-size:28px;color:var(--green);font-weight:700;margin-top:32px}
+.hero-meta{color:#667FA3;font-size:14px;margin-top:24px}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:#8CB4FF;font-size:24px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+
+/* Sections */
+.section{max-width:1200px;margin:0 auto;padding:80px 24px}
+.section-tag{color:var(--blue);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.section-title{font-size:36px;font-weight:800;margin-bottom:16px;letter-spacing:-1px}
+.section-desc{font-size:16px;color:var(--gray);max-width:680px;margin-bottom:40px}
+
+/* Quote box */
+.quote-box{background:var(--blue-light);border-left:4px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:20px 28px;margin-bottom:32px;font-style:italic;color:var(--blue);font-size:15px}
+
+/* Comparison table */
+.compare-table{width:100%;border-collapse:collapse;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.compare-table th{background:var(--blue);color:#fff;padding:14px 20px;font-size:14px;text-align:left}
+.compare-table td{padding:12px 20px;font-size:14px;border-bottom:1px solid #eee}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tr:hover td{background:#f8faff}
+.compare-table .highlight-row td{background:var(--blue-light);font-weight:600;color:var(--blue)}
+
+/* Cards grid */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.card-num{font-size:36px;font-weight:800;color:var(--blue);opacity:.2;line-height:1;margin-bottom:8px}
+.card-title{font-size:16px;font-weight:700;margin-bottom:8px}
+.card-desc{font-size:13px;color:var(--gray);line-height:1.7}
+
+/* Scene card grid + left content + right preview */
+.scene-cards{display:grid;grid-template-columns:1fr;gap:20px}
+.scene-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04);transition:all .3s;display:flex}
+.scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.scene-content{flex:1;min-width:0;display:flex;flex-direction:column}
+.scene-header{padding:20px 24px 12px;display:flex;align-items:center;gap:12px}
+.scene-icon{background:var(--blue);color:#fff;border-radius:6px;padding:4px 12px;font-size:13px;font-weight:600;white-space:nowrap}
+.scene-body{padding:0 24px 20px;flex:1}
+.scene-title{font-size:16px;font-weight:700;margin-bottom:8px}
+.scene-desc{font-size:13px;color:var(--gray);margin-bottom:12px}
+.scene-flow{font-size:12px;color:var(--blue);line-height:1.8;padding:12px;background:var(--blue-light);border-radius:8px}
+
+/* Right-side preview: real chat window */
+.scene-preview{width:340px;flex-shrink:0;background:#f5f6fa;display:flex;flex-direction:column;border-left:1px solid rgba(0,0,0,.06)}
+.preview-header{height:40px;background:#fff;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;padding:0 14px;gap:8px;flex-shrink:0}
+.preview-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#0052D9,#3B7BFF);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+.preview-header-name{font-size:12px;font-weight:600;color:#333}
+.preview-header-status{font-size:10px;color:#999;margin-left:2px}
+.preview-body{flex:1;overflow-y:auto;padding:14px 12px}
+.preview-user{background:#0052D9;color:#fff;padding:10px 14px;border-radius:14px 14px 4px 14px;font-size:12px;line-height:1.7;margin-bottom:12px;max-width:85%;margin-left:auto;word-break:break-all}
+.preview-ai{background:#fff;color:#333;padding:12px 14px;border-radius:14px 14px 14px 4px;font-size:12px;line-height:1.7;margin-bottom:12px;max-width:92%;box-shadow:0 1px 3px rgba(0,0,0,.05);word-break:break-all;white-space:pre-wrap}
+.preview-ai .ai-label{display:inline-block;background:#E8F0FE;color:#0052D9;font-size:10px;padding:1px 6px;border-radius:3px;margin-bottom:6px;font-weight:600}
+.preview-ai .file-line{color:#0052D9;font-size:11px;padding:2px 0}
+.preview-ai .result-line{font-size:11px;color:#555;padding:1px 0}
+.preview-ai .highlight{color:#0052D9;font-weight:600}
+.preview-ai .warn-text{color:#E65100;font-weight:600}
+.preview-ai .danger-text{color:#C62828;font-weight:600}
+.preview-ai .done-text{color:#2E7D32;font-weight:600}
+.preview-ai .dim{color:#999;font-size:11px}
+.preview-ai .sep{color:#ddd;margin:4px 0}
+
+/* Case cards - left content, right image */
+.case-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.case-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04);transition:all .3s;display:flex;position:relative}
+.case-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.case-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue)}
+.case-content{flex:1;min-width:0;padding:24px;display:flex;flex-direction:column;position:relative}
+.case-num{font-size:32px;font-weight:800;color:var(--blue);opacity:.15;position:absolute;top:12px;right:20px}
+.case-title{font-size:16px;font-weight:700;margin-bottom:8px}
+.case-desc{font-size:13px;color:var(--gray);margin-bottom:12px;line-height:1.7;flex:1}
+.case-metric{display:inline-block;background:var(--blue-light);color:var(--blue);padding:4px 12px;border-radius:6px;font-size:12px;font-weight:600}
+.case-preview{width:380px;flex-shrink:0;background:#f5f6fa;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(0,0,0,.06);overflow:hidden;position:relative}
+.case-preview img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.case-card:hover .case-preview img{transform:scale(1.03)}
+.case-preview-label{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font-size:11px;font-weight:500}
+
+/* Scene filter tabs - Premium Design */
+.scene-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;padding:20px 24px;background:linear-gradient(135deg,#fff 0%,#f8faff 100%);border-radius:18px;border:1px solid rgba(0,82,217,.08);box-shadow:0 4px 24px rgba(0,0,0,.04);align-items:center}
+.scene-tab{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:24px;font-size:13.5px;font-weight:600;cursor:pointer;border:none;background:#f0f2f7;color:#555;transition:all .3s cubic-bezier(.4,0,.2,1);user-select:none;position:relative;letter-spacing:.2px}
+.scene-tab:hover{background:#e8ebf4;color:#333;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.scene-tab .tab-icon{font-size:15px;line-height:1}
+.scene-tab .tab-count{font-size:11px;font-weight:700;background:rgba(255,255,255,.6);padding:1px 7px;border-radius:10px;color:#888;margin-left:-2px}
+/* Active state per category color */
+.scene-tab.active[data-filter="all"]{background:linear-gradient(135deg,#0052D9,#3B7BFF);color:#fff;box-shadow:0 4px 16px rgba(0,82,217,.35)}
+.scene-tab.active[data-filter="all"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="office"]{background:linear-gradient(135deg,#1976D2,#42A5F5);color:#fff;box-shadow:0 4px 16px rgba(25,118,210,.35)}
+.scene-tab.active[data-filter="office"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="dev"]{background:linear-gradient(135deg,#3949AB,#5C6BC0);color:#fff;box-shadow:0 4px 16px rgba(57,73,171,.35)}
+.scene-tab.active[data-filter="dev"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="hr"]{background:linear-gradient(135deg,#00796B,#26A69A);color:#fff;box-shadow:0 4px 16px rgba(0,121,107,.35)}
+.scene-tab.active[data-filter="hr"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="finance"]{background:linear-gradient(135deg,#EF6C00,#FFA726);color:#fff;box-shadow:0 4px 16px rgba(239,108,0,.35)}
+.scene-tab.active[data-filter="finance"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="legal"]{background:linear-gradient(135deg,#C62828,#EF5350);color:#fff;box-shadow:0 4px 16px rgba(198,40,40,.35)}
+.scene-tab.active[data-filter="legal"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="marketing"]{background:linear-gradient(135deg,#7B1FA2,#BA68C8);color:#fff;box-shadow:0 4px 16px rgba(123,31,162,.35)}
+.scene-tab.active[data-filter="marketing"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="sales"]{background:linear-gradient(135deg,#388E3C,#66BB6A);color:#fff;box-shadow:0 4px 16px rgba(56,142,60,.35)}
+.scene-tab.active[data-filter="sales"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="edu"]{background:linear-gradient(135deg,#F57F17,#FFD54F);color:#fff;box-shadow:0 4px 16px rgba(245,127,23,.35)}
+.scene-tab.active[data-filter="edu"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active[data-filter="medical"]{background:linear-gradient(135deg,#00897B,#4DB6AC);color:#fff;box-shadow:0 4px 16px rgba(0,137,123,.35)}
+.scene-tab.active[data-filter="medical"] .tab-count{background:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+.scene-tab.active{transform:translateY(-2px)}
+.scene-category{transition:all .4s ease}
+.scene-category.hidden{display:none}
+
+/* Material links */
+.material-links{margin-top:16px;padding-top:12px;border-top:1px dashed #e0e8f5}
+.material-links-title{font-size:12px;font-weight:600;color:var(--blue);margin-bottom:6px;display:flex;align-items:center;gap:4px}
+.material-links a{display:block;font-size:12px;color:var(--blue);text-decoration:none;padding:3px 0;transition:color .2s}
+.material-links a:hover{color:var(--green);text-decoration:underline}
+
+/* Scene Category Headers */
+.scene-category{margin-bottom:48px}
+.category-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding:16px 24px;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);position:relative;overflow:hidden}
+.category-header::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.15}
+.category-header .category-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.category-info{}
+.category-name{font-size:18px;font-weight:800;letter-spacing:-.3px}
+.category-desc{font-size:12px;margin-top:2px;opacity:.65;font-weight:500}
+.cat-office{background:linear-gradient(135deg,#E8F0FE 0%,#D4E6FF 100%);border-left:4px solid #0052D9;color:#0052D9}
+.cat-office .category-icon{background:linear-gradient(135deg,#0052D9,#3B7BFF)}
+.cat-office .category-name{color:#0052D9}
+.cat-office .category-desc{color:#4A6FA5}
+.cat-hr{background:linear-gradient(135deg,#E0F7FA 0%,#C8EDF1 100%);border-left:4px solid #00897B;color:#00897B}
+.cat-hr .category-icon{background:linear-gradient(135deg,#00897B,#26A69A)}
+.cat-hr .category-name{color:#00897B}
+.cat-hr .category-desc{color:#4A7C76}
+.cat-finance{background:linear-gradient(135deg,#FFF3E0 0%,#FFE8C4 100%);border-left:4px solid #E65100;color:#E65100}
+.cat-finance .category-icon{background:linear-gradient(135deg,#E65100,#FF8A50)}
+.cat-finance .category-name{color:#E65100}
+.cat-finance .category-desc{color:#9A5B30}
+.cat-legal{background:linear-gradient(135deg,#FCE4EC 0%,#F8C8D8 100%);border-left:4px solid #C62828;color:#C62828}
+.cat-legal .category-icon{background:linear-gradient(135deg,#C62828,#EF5350)}
+.cat-legal .category-name{color:#C62828}
+.cat-legal .category-desc{color:#8C4040}
+.cat-marketing{background:linear-gradient(135deg,#F3E5F5 0%,#E4CCE8 100%);border-left:4px solid #8E24AA;color:#8E24AA}
+.cat-marketing .category-icon{background:linear-gradient(135deg,#8E24AA,#BA68C8)}
+.cat-marketing .category-name{color:#8E24AA}
+.cat-marketing .category-desc{color:#6E5A7A}
+.cat-sales{background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);border-left:4px solid #2E7D32;color:#2E7D32}
+.cat-sales .category-icon{background:linear-gradient(135deg,#2E7D32,#66BB6A)}
+.cat-sales .category-name{color:#2E7D32}
+.cat-sales .category-desc{color:#4A7C4D}
+.cat-edu{background:linear-gradient(135deg,#FFF8E1 0%,#FFECB3 100%);border-left:4px solid #F9A825;color:#E68A00}
+.cat-edu .category-icon{background:linear-gradient(135deg,#F9A825,#FFD54F)}
+.cat-edu .category-name{color:#E68A00}
+.cat-edu .category-desc{color:#8A6D30}
+.cat-dev{background:linear-gradient(135deg,#E8EAF6 0%,#C5CAE9 100%);border-left:4px solid #303F9F;color:#303F9F}
+.cat-dev .category-icon{background:linear-gradient(135deg,#303F9F,#5C6BC0)}
+.cat-dev .category-name{color:#303F9F}
+.cat-dev .category-desc{color:#4A5080}
+.cat-medical{background:linear-gradient(135deg,#E0F2F1 0%,#B2DFDB 100%);border-left:4px solid #00695C;color:#00695C}
+.cat-medical .category-icon{background:linear-gradient(135deg,#00695C,#26A69A)}
+.cat-medical .category-name{color:#00695C}
+.cat-medical .category-desc{color:#3E7A72}
+.lexiang-badge{display:inline-block;background:linear-gradient(135deg,#FFB800,#FFC940);color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600}
+.wb-badge{display:inline-block;background:linear-gradient(135deg,#0052D9,#3B7BFF);color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;margin-left:4px;font-weight:600}
+
+/* Metrics */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:24px 0}
+.metric-card{background:var(--card);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow)}
+.metric-num{font-size:32px;font-weight:800;color:var(--blue);line-height:1}
+.metric-label{font-size:12px;color:var(--gray);margin-top:4px}
+
+/* Dark section */
+.dark-section{background:linear-gradient(135deg,#001B44,#003399);padding:80px 24px;color:#fff}
+.dark-section .section-tag{color:var(--green)}
+.dark-section .section-title{color:#fff}
+.dark-section .section-desc{color:#8CB4FF}
+
+/* Flywheel steps */
+.flywheel{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.fw-step{flex:1;min-width:140px;background:rgba(0,82,217,.15);border:1px solid rgba(0,82,217,.4);border-radius:var(--radius);padding:20px;text-align:center;transition:all .3s}
+.fw-step:hover{background:rgba(0,82,217,.25);transform:translateY(-2px)}
+.fw-num{font-size:28px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.fw-label{font-size:14px;font-weight:700;margin-bottom:6px;color:#fff}
+.fw-desc{font-size:11px;color:#8CB4FF;line-height:1.5}
+
+/* Agent suite */
+.agent-cards{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px}
+.agent-card{flex:1;min-width:200px;background:rgba(0,168,112,.1);border:1px solid rgba(0,168,112,.3);border-radius:var(--radius);padding:16px}
+.agent-title{font-size:14px;font-weight:700;color:var(--green);margin-bottom:4px}
+.agent-desc{font-size:12px;color:#B0C4DE;line-height:1.6}
+
+/* Security */
+.security-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:768px){.security-grid{grid-template-columns:1fr}}
+.safe-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:24px}
+.safe-icon{background:var(--blue-light);border-radius:50%;width:48px;height:48px;min-width:48px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--blue)}
+.safe-label{font-size:16px;font-weight:700;margin-bottom:4px}
+.safe-desc{font-size:13px;color:var(--gray);line-height:1.7}
+.comp-item{background:var(--card);border-radius:var(--radius);padding:16px 20px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);border-left:3px solid var(--blue)}
+.comp-label{font-size:14px;font-weight:600}
+.comp-desc{font-size:12px;color:var(--gray);margin-top:4px}
+
+/* Model cards */
+.model-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.model-card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04);transition:all .3s}
+.model-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.model-name{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:4px}
+.model-feat{font-size:12px;color:var(--dark);margin-bottom:4px}
+.model-scene{font-size:11px;color:var(--gray)}
+.note-box{background:#F0FFF5;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px 20px;margin-top:24px;font-size:13px;color:var(--green);font-weight:600}
+
+/* Material index */
+.material-table{width:100%;border-collapse:collapse;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.material-table th{background:var(--blue);color:#fff;padding:12px 16px;font-size:13px;text-align:left}
+.material-table td{padding:10px 16px;font-size:13px;border-bottom:1px solid #eee}
+.material-table tr:hover td{background:#f8faff}
+.material-table a{color:var(--blue);text-decoration:none;font-weight:500}
+.material-table a:hover{text-decoration:underline}
+
+/* Footer */
+.footer{background:var(--dark);padding:40px 24px;text-align:center;color:#999;font-size:13px}
+
+/* Animate on scroll */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:40px}
+  .hero p{font-size:16px}
+  .hero-slogan{font-size:20px}
+  .section-title{font-size:28px}
+  .nav-links{display:none}
+  .flywheel{flex-direction:column}
+  .case-card{flex-direction:column}
+  .case-preview{width:100%;border-left:none;border-top:1px solid rgba(0,0,0,.06);max-height:220px}
+  .card-grid{grid-template-columns:1fr}
+  .scene-card{flex-direction:column}
+  .scene-preview{width:100%;border-left:none;border-top:1px solid rgba(0,0,0,.06);max-height:320px}
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">WorkBuddy</div>
+    <div class="nav-links">
+      <a href="#overview">产品概述</a>
+      <a href="#capabilities">核心能力</a>
+      <a href="#enterprise">企业版</a>
+      <a href="#scenarios">使用场景</a>
+      <a href="#cases">使用案例</a>
+      <a href="#materials">素材索引</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-badge">TENCENT CSIG</div>
+    <h1>WorkBuddy</h1>
+    <p>全场景职场 AI 原生智能体工作台</p>
+    <p style="font-size:16px;color:#a0b8e0;margin-top:8px">产品介绍 · 场景实践 · 使用案例</p>
+    <div class="hero-slogan">一句话让 AI 替你上班</div>
+    <div class="hero-meta">腾讯 CSIG · 2026年5月 · v5.5</div>
+  </div>
+  <div class="scroll-hint">&#8595;</div>
+</section>
+
+<!-- 1. 产品概述 -->
+<section class="section" id="overview">
+  <div class="fade-up">
+    <p class="section-tag">01 / Product Overview</p>
+    <h2 class="section-title">产品概述</h2>
+    <div class="quote-box">
+      WorkBuddy 是腾讯推出的桌面级 AI 助手，被媒体叫作"腾讯版小龙虾"。跟只能在对话框里回答问题的传统 AI 不一样，WorkBuddy 能直接操作你电脑上的文件——你说一句话，它自己去规划、执行，最后把做完的东西交给你。2026 年 3 月 9 日上线。
+    </div>
+    <h3 style="font-size:20px;margin-bottom:16px">核心差异化对比</h3>
+    <table class="compare-table">
+      <thead><tr><th>对比维度</th><th>传统 AI 聊天工具</th><th>WorkBuddy 智能体工作台</th></tr></thead>
+      <tbody>
+        <tr><td><strong>它的角色</strong></td><td>写作顾问 / 建议提供者</td><td><strong>办公执行者 / 任务完成同事</strong></td></tr>
+        <tr><td><strong>交付结果</strong></td><td>方法建议、模板、润色建议</td><td>分类结果、回复草稿、正式邮件、可发送交付物</td></tr>
+        <tr><td><strong>能否接触现场</strong></td><td>不能，需用户复制粘贴</td><td>能读取文件/邮箱/表格，理解上下文</td></tr>
+        <tr><td><strong>用户要做什么</strong></td><td>自己筛选、判断、写作、发送</td><td>提出目标，检查结果，确认发送</td></tr>
+        <tr class="highlight-row"><td><strong>核心区别</strong></td><td>让员工"知道怎么处理"</td><td><strong>让员工"直接拿到处理后的结果"</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="material-links" style="margin-top:20px">
+      <div class="material-links-title">🔗 延伸阅读</div>
+      <a href="https://csig.lexiangla.com/pages/b96442a34bef4915b0e42ac078116d29">传统AI聊天 vs WorkBuddy干活 — 最佳实践案例对比（含完整工作流对比）</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 核心能力 -->
+<section class="section" id="capabilities">
+  <div class="fade-up">
+    <p class="section-tag">02 / Core Capabilities</p>
+    <h2 class="section-title">核心能力</h2>
+    <div class="card-grid">
+      <div class="card"><div class="card-num">01</div><div class="card-title">智能任务自动化执行</div><div class="card-desc">你说一句话，它自己把任务拆开、排好步骤、跑完全程。适合周期性、重复性的办公活儿。比如：自动生成日报周报、定时抓竞品信息、整理会议录音出纪要。</div></div>
+      <div class="card"><div class="card-num">02</div><div class="card-title">本地文件全流程操作</div><div class="card-desc">你授权之后，它可以直接读写你电脑上的文件——批量编辑、分类整理、格式转换、归档。比如：把桌面文件按类型归类、批量改名、处理 Excel、改 Word 文档。</div></div>
+      <div class="card"><div class="card-num">03</div><div class="card-title">多模态办公内容创作</div><div class="card-desc">写文案、做 PPT、画海报、出数据图表，风格、框架、细节随你调。</div></div>
+      <div class="card"><div class="card-num">04</div><div class="card-title">专业数据处理与报表</div><div class="card-desc">数据清洗、统计分析、图表可视化、自动出报表。表格数据跑一遍，核心指标和结论就出来了。</div></div>
+      <div class="card"><div class="card-num">05</div><div class="card-title">跨平台远程电脑控制</div><div class="card-desc">支持 MCP 协议，连接企业微信、QQ、飞书、钉钉等办公平台。手机上发一句话，办公室电脑就开始干活，做完把结果给你。</div></div>
+      <div class="card"><div class="card-num">06</div><div class="card-title">Skills 技能包系统</div><div class="card-desc">自带 20 多个 Skills 技能包，不用写代码就能扩展新能力。日常操作可以封装成可复用的技能，也能在团队里分享、上传到开源社区。</div></div>
+    </div>
+  </div>
+
+  <div class="fade-up" style="margin-top:48px">
+    <h3 style="font-size:20px;margin-bottom:16px">多模型自由切换</h3>
+    <p class="section-desc" style="margin-bottom:20px">不绑定单一模型，五大主流大模型随意切，哪个适合用哪个</p>
+    <div class="model-grid">
+      <div class="model-card"><div class="model-name">腾讯混元</div><div class="model-feat">强大中文理解、多模态处理</div><div class="model-scene">报告撰写、文案生成、数据分析</div></div>
+      <div class="model-card"><div class="model-name">DeepSeek V3/R1</div><div class="model-feat">推理能力强、代码能力顶尖</div><div class="model-scene">复杂架构设计、代码调试</div></div>
+      <div class="model-card"><div class="model-name">GLM-5 系列</div><div class="model-feat">综合能力强劲、多模态</div><div class="model-scene">中文语境复杂语义处理</div></div>
+      <div class="model-card"><div class="model-name">Kimi K2 系列</div><div class="model-feat">长文本处理能力强（256K上下文）</div><div class="model-scene">超长文档阅读、多文档分析</div></div>
+      <div class="model-card"><div class="model-name">MiniMax M2 系列</div><div class="model-feat">能力均衡、支持推理模型</div><div class="model-scene">日常使用、内容创作</div></div>
+    </div>
+    <div class="note-box">企微/QQ 三步连上，手机发指令，电脑端自动干活</div>
+  </div>
+</section>
+
+<!-- 3. 企业版飞轮 -->
+<section class="dark-section" id="enterprise">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="fade-up">
+      <p class="section-tag">03 / Enterprise Flywheel</p>
+      <h2 class="section-title">企业版核心逻辑：AI 工作飞轮</h2>
+      <p class="section-desc">企业版不是给员工多一个 AI 聊天框。它跑的是一条飞轮：统一入口 → 超级个体 → 超级团队 → 企业 AI 资产 → 数字员工 → 组织生产力持续释放。</p>
+    </div>
+    <div class="flywheel">
+      <div class="fw-step"><div class="fw-num">1</div><div class="fw-label">超级个体</div><div class="fw-desc">员工用 WorkBuddy 调用组织能力干活，个人能力直接放大</div></div>
+      <div class="fw-step"><div class="fw-num">2</div><div class="fw-label">超级团队</div><div class="fw-desc">人 + 数字员工组队干活，团队围绕任务持续推进</div></div>
+      <div class="fw-step"><div class="fw-num">3</div><div class="fw-label">企业AI资产</div><div class="fw-desc">每次任务沉淀知识、技能、经验和案例</div></div>
+      <div class="fw-step"><div class="fw-num">4</div><div class="fw-label">数字员工</div><div class="fw-desc">7×24 在线，懂岗位、有技能、熟悉企业知识</div></div>
+      <div class="fw-step"><div class="fw-num">5</div><div class="fw-label">统一治理</div><div class="fw-desc">管理员统一管控智能体的权限、安全和审计</div></div>
+    </div>
+    <div class="agent-cards" style="margin-top:32px">
+      <div class="agent-card"><div class="agent-title">腾讯文档</div><div class="agent-desc">内容生产与协作底座，AI 生成的东西直接进协作体系</div></div>
+      <div class="agent-card"><div class="agent-title">腾讯网盘</div><div class="agent-desc">文件和素材管理底座，本地产物、团队共享文件都能存、能回溯</div></div>
+      <div class="agent-card"><div class="agent-title">腾讯乐享</div><div class="agent-desc">知识治理底座，制度、培训、经验变成数字员工的知识</div></div>
+    </div>
+    <div class="material-links" style="margin-top:20px;border-color:rgba(255,255,255,.2)">
+      <div class="material-links-title" style="color:#8CB4FF">🔗 素材链接</div>
+      <a href="https://csig.lexiangla.com/pages/dd473bab87ae46ab91a1049a101d35b4" style="color:#8CB4FF">WorkBuddy企业版主线逻辑说明材料</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 使用场景 -->
+<section class="section" id="scenarios">
+  <div class="fade-up">
+    <p class="section-tag">04 / Scenarios</p>
+    <h2 class="section-title">使用场景</h2>
+    <p class="section-desc">覆盖9大业务域、19个落地场景——点击分类标签快速筛选</p>
+    <div class="scene-tabs" id="sceneTabs">
+      <div class="scene-tab active" data-filter="all"><span class="tab-icon">✨</span> 全部场景<span class="tab-count">19</span></div>
+      <div class="scene-tab" data-filter="office"><span class="tab-icon">📋</span> 通用办公场景<span class="tab-count">7</span></div>
+      <div class="scene-tab" data-filter="dev"><span class="tab-icon">💻</span> 研发技术场景<span class="tab-count">2</span></div>
+      <div class="scene-tab" data-filter="hr"><span class="tab-icon">👥</span> 人力资源场景<span class="tab-count">2</span></div>
+      <div class="scene-tab" data-filter="finance"><span class="tab-icon">💰</span> 财务场景<span class="tab-count">1</span></div>
+      <div class="scene-tab" data-filter="legal"><span class="tab-icon">⚖️</span> 法务合规场景<span class="tab-count">1</span></div>
+      <div class="scene-tab" data-filter="marketing"><span class="tab-icon">📢</span> 运营市场场景<span class="tab-count">2</span></div>
+      <div class="scene-tab" data-filter="sales"><span class="tab-icon">🤝</span> 销售场景<span class="tab-count">1</span></div>
+      <div class="scene-tab" data-filter="edu"><span class="tab-icon">🎓</span> 教育场景<span class="tab-count">2</span></div>
+      <div class="scene-tab" data-filter="medical"><span class="tab-icon">🏥</span> 医疗场景<span class="tab-count">1</span></div>
+    </div>
+      
+    </div>
+  </div>
+
+  <!-- ===== 1. 通用办公与项目管理 ===== -->
+  <div class="scene-category fade-up" data-category="office">
+    <div class="category-header cat-office">
+      <div class="category-icon">📋</div>
+      <div class="category-info">
+        <div class="category-name">通用办公与项目管理</div>
+        <div class="category-desc">信息沟通 · PPT生成 · 数据处理 · 会议协同 · 文件整理 · 工单自动化 · 自动化任务 · 移动办公</div>
+      </div>
+    </div>
+
+    <!-- 卡片组：信息沟通+周报+远程 -->
+    <div class="scene-cards" style="margin-top:32px">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">沟通</span></div>
+        <div class="scene-body">
+          <div class="scene-title">高效信息沟通 / 邮件处理</div><div class="scene-desc">每天面对大量邮件需要逐一回复、分类、跟进，耗时且容易遗漏关键信息；英文邮件沟通存在语言障碍。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>批量上传未读邮件 → 自动分类优先级（必须亲自回/助理代回/仅知会/可忽略）→ 草拟回复 → 确认发送<br>英文邮件先出中文审稿再翻译成商务英语</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>2-3h → 10-20m | 员工从执行者变成审核者</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/d29884d7de53488f94500b1fb5c46a33">WorkBuddy办公场景01_高效信息沟通_最佳实践案例（含视频+PDF）</a><a href="https://csig.lexiangla.com/pages/b96442a34bef4915b0e42ac078116d29">传统AI聊天 vs WorkBuddy干活_最佳实践案例</a></div>
+        </div>
+      </div>
+
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">远程</span> <span class="lexiang-badge">乐享负责</span> <span class="wb-badge">WorkBuddy负责</span></div>
+        <div class="scene-body">
+          <div class="scene-title">移动办公 / 远程触发任务</div><div class="scene-desc">外出时无法访问公司资料，紧急需求响应慢；碎片时间无法有效推进工作。</div><div class="scene-flow"><strong>WorkBuddy 做法（乐享+WB联动）：</strong>企微/微信发一句话指令 → WorkBuddy调用乐享知识库资料 → 在电脑端完成操作 → 结果回传手机<br>"把客户X案例和会后纪要发我，顺便生成一封跟进邮件"</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>移动办公效率提升 | "找资料-处理-回传"一次做完 | 碎片时间也能推进项目</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/0be95da3d040443bacab438f7c678c52">WorkBuddy + 乐享AI知识库联合方案</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">文件</span></div>
+        <div class="scene-body">
+          <div class="scene-title">文件整理与 PPT 生成</div><div class="scene-desc">桌面文件堆积混乱，查找困难；PPT制作需搬模板、调排版、凑内容，耗时且质量不稳定。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>"帮我按项目名分类桌面文件" → 自动归类归档+批量重命名+格式转换<br>"用这些素材生成20页产品介绍PPT" → 3分钟出商务风完整PPT</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>3分钟生成20页PPT | 文件整理1h→3min | 批量格式转换效率堪比付费工具</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://csig.lexiangla.com/pages/a7e010a728bb4359a5ba659ca852230a">WorkBuddy办公场景03_PPT生成与处理_最佳实践案例（含视频+PDF）</a><a href="https://cloud.tencent.com/developer/article/2672937">WorkBuddy产品介绍与使用指南（腾讯云社区）</a><a href="https://news.qq.com/rain/a/20260508A057G700">WorkBuddy这4个功能，我后悔没早点用（三节课）</a><a href="https://cloud.tencent.com/developer/article/2638060">腾讯WorkBuddy上线！AI办公搭子来袭（腾讯云社区）</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">定时</span></div>
+        <div class="scene-body">
+          <div class="scene-title">自动化定时任务</div><div class="scene-desc">日报周报每天写、行业热点每天搜、竞品动态定期跟踪——重复劳动每天都在消耗时间。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>设置定时任务 → "每天早上7点给我出一份AI行业早报"<br>设置一次永久生效：新闻简报/公众号数据分析/竞品官网监控 → 跑完自动推企微</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>设置一次永久生效 | 重复任务零人工 | 后台静默运行不卡顿 | 断网自动重连</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://cloud.tencent.com/developer/article/2645796">腾讯云WorkBuddy实战：全场景智能体工作搭子</a><a href="https://cloud.tencent.com/developer/article/2637991">WorkBuddy重大升级：直连微信，全量开放</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">会议</span></div>
+        <div class="scene-body">
+          <div class="scene-title">会议文档高效协同 / 纪要闭环</div><div class="scene-desc">开完会纪要整理要1-2小时；通知参会人、建文档、约下次会等琐碎跟进耗费大量精力。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>上传会议录音或文字记录 → 自动输出结构化纪要（议题/决议/待办/负责人/截止日期）<br>写入腾讯文档生成协作链接 → 企微通知参会人 → 根据决议自动预约下次会议</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>1-2h → 几分钟 | 纪要→文档→通知→下次会议 全链路闭环</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/dad0d3e2685143d4b61e64f9eebb9b30">WorkBuddy办公场景05_会议文档高效协同_最佳实践案例（含视频+PDF）</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">数据</span></div>
+        <div class="scene-body">
+          <div class="scene-title">数据分析与可视化</div><div class="scene-desc">Excel数据脏乱差（空值/重复/格式不统一），多表关联靠手动对齐；做图表查公式写代码门槛高。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>上传Excel → 一句话指令完成数据清洗（去重/填空值/统一格式/标红异常值）<br>多表关联汇总 → 动态图表可视化一键生成；手机端也能操作："地铁上发一句帮我分析销售数据"</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>数据清洗十几秒搞定 | 专业图表直接生成 | 小白秒变数据分析大神</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://csig.lexiangla.com/pages/8745166df6e6492f8aab3c039fd838ab">WorkBuddy办公场景04_可视化数据处理_最佳实践案例（含视频+PDF）</a><a href="https://cloud.tencent.com/developer/article/2672937">WorkBuddy产品介绍与使用指南（腾讯云社区）</a><a href="https://cloud.tencent.com/developer/article/2645796">腾讯云WorkBuddy实战</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">工单</span></div>
+        <div class="scene-body">
+          <div class="scene-title">自动化工单处理</div><div class="scene-desc">工单系统操作步骤多、表单字段繁琐，一线人员填单耗时易出错；售后工单分散在多个平台，人工汇总分类效率低。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>口述一句话 → 自动识别关键信息（类型/优先级/责任人）→ 自动填写并创建工单 → 智能派发对应部门<br>售后工单定时自动提取→分类→生成汇总表推送主管</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>7-12步操作压缩至1句指令3秒执行 | 工单处理效率提升80%+ | 售后汇总从翻聊天→自动出表</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://finance.stockstar.com/IG2026052700021801.shtml">从"填很多表"到"聊几句天"，WorkBuddy重塑智慧物业服务体验（财经报道网）</a><a href="https://cloud.tencent.com.cn/developer/article/2658155">电商运营效率翻倍：WorkBuddy实战指令大全（腾讯云社区）</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 2. 人力资源场景 ===== -->
+  <div class="scene-category fade-up" data-category="hr">
+    <div class="category-header cat-hr">
+      <div class="category-icon">👥</div>
+      <div class="category-info">
+        <div class="category-name">人力资源场景</div>
+        <div class="category-desc">招聘提效 · 入职管理 · 培训辅导</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">HR</span></div>
+        <div class="scene-body">
+          <div class="scene-title">招聘提效与入职管理</div><div class="scene-desc">逐份打开简历、对照JD比对、填表打分——筛50份简历耗时半天以上；招聘文案和入职通知也是机械劳动。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>上传JD+简历包 → 自动按技能/经验/教育/稳定性四维度评分排序 → 输出《候选人匹配度报告》<br>招聘文案一键生成 → 100份个性化入职通知批量发送</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>简历筛选 半天→15min | 招聘文案一键生成 | 入职通知批量个性化发送</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://cloud.tencent.com/developer/article/2672937">WorkBuddy产品介绍与使用指南（腾讯云社区）</a><a href="https://developer.cloud.tencent.com/article/2658096">WorkBuddy完全指南：从入门到精通</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">培训</span> <span class="lexiang-badge">乐享负责</span> <span class="wb-badge">WorkBuddy负责</span></div>
+        <div class="scene-body">
+          <div class="scene-title">新人培训与岗位辅导</div><div class="scene-desc">培训资料零散不成体系，新员工上手慢；带教依赖老员工一对一，组织经验无法系统化沉淀复用。</div><div class="scene-flow"><strong>WorkBuddy 做法（乐享+WB联动）：</strong>乐享沉淀岗位SOP和案例 → 新人通过WB随时向知识库提问获取答案<br>自动生成学习计划+每周任务清单+错题总结 → 组织经验从个人脑子搬进可复用系统</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>缩短新人上岗周期 | 降低带教成本 | 培训从静态课件变动态辅导</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/0be95da3d040443bacab438f7c678c52">WorkBuddy + 乐享AI知识库联合方案</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 3. 财务场景 ===== -->
+  <div class="scene-category fade-up" data-category="finance">
+    <div class="category-header cat-finance">
+      <div class="category-icon">💰</div>
+      <div class="category-info">
+        <div class="category-name">财务场景</div>
+        <div class="category-desc">发票报销 · 报表汇总 · 数据可视化</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">财务</span></div>
+        <div class="scene-body">
+          <div class="scene-title">发票报销与报表汇总</div><div class="scene-desc">月底一张张拍照录入发票，金额/日期/项目错一个字整张表重来；多表手动汇总易出错。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>45张发票照片一次性丢进去 → OCR识别+自动提取信息+按规则归档命名<br>5分钟出可直接提交的报销明细表；多表汇总同理 → 月度/季度可视化图表一键生成</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>发票录入 2h→5min | 报销明细可直接提交 | 财务报表自动汇总</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://cloud.tencent.com/developer/article/2672937">WorkBuddy产品介绍与使用指南（腾讯云社区）</a><a href="https://cloud.tencent.com/developer/article/2638060">腾讯WorkBuddy上线！AI办公搭子来袭</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 4. 研发技术场景 ===== -->
+  <div class="scene-category fade-up" data-category="dev">
+    <div class="category-header cat-dev">
+      <div class="category-icon">💻</div>
+      <div class="category-info">
+        <div class="category-name">研发技术场景</div>
+        <div class="category-desc">代码生成 · 代码审查 · Bug修复 · 技术文档 · PRD撰写</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">研发</span></div>
+        <div class="scene-body">
+          <div class="scene-title">代码生成 / 审查 / Bug 修复</div><div class="scene-desc">陌生代码库架构看不懂、逻辑理不清；代码审查全靠人肉逐行扫，安全漏洞和性能瓶颈容易漏掉。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>直接读代码目录 → 从需求描述生成代码框架 → 扫描安全漏洞和性能瓶颈<br>定位Bug并给修复方案 → 重构低效模块；陌生仓库先梳理架构再动手改</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>代码审查效率翻倍 | Bug定位时间减半 | 陌生代码库 天级→小时级理解</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://developer.cloud.tencent.com/article/2651884">腾讯全场景AI智能体桌面工作台WorkBuddy产品与技术应用概要</a><a href="https://www.codebuddy.cn/docs/workbuddy/Overview">WorkBuddy官方文档</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">PRD</span></div>
+        <div class="scene-body">
+          <div class="scene-title">PRD 文档 / 技术文档生成</div><div class="scene-desc">写PRD是产品经理日常折磨——需求背景讲不清、功能点遗漏、验收标准有歧义，一写就半天。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>输入需求讨论的会议纪要或口头描述 → 自动输出结构化PRD文档<br>背景目标/角色场景/功能清单/验收标准/原型链接 → 导出Word或Markdown；竞品分析输入名称和分析维度就能跑</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>PRD撰写 半天→1h | 竞品分析 1天→2-3h | 技术文档自动生成</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://cloud.tencent.com.cn/developer/article/2640533">腾讯云WorkBuddy实战指南</a><a href="https://cloud.tencent.com/developer/article/2655659">一个人就是一支队伍：WorkBuddy数字工作室实录</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 5. 法务合规场景 ===== -->
+  <div class="scene-category fade-up" data-category="legal">
+    <div class="category-header cat-legal">
+      <div class="category-icon">⚖️</div>
+      <div class="category-info">
+        <div class="category-name">法务合规场景</div>
+        <div class="category-desc">合同审查 · 商务文书 · 风险排查 · 制度合规</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">法务</span> <span class="lexiang-badge">乐享负责</span> <span class="wb-badge">WorkBuddy负责</span></div>
+        <div class="scene-body">
+          <div class="scene-title">合同审查 / 商务文书 / 合规支持</div><div class="scene-desc">合同逐份审每次只能传1份；条款多到眼睛花，关键风险点一不留神就漏掉；商务文书起草措辞费时。</div><div class="scene-flow"><strong>WorkBuddy 做法（乐享+WB联动）：</strong>批量上传合同文件 → 一条指令逐个处理 → 自动标注异常条款+对比版本差异<br>输出风险审查报告；商务文书输入要点即可出专业文稿；结合乐享制度规范AI回答有据可查</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>10份合同审查 1天→2h | 商务文书 2h→10min | 风险点自动标注 | AI回答可追溯</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://cloud.tencent.com/developer/article/2649113">WorkBuddy保姆级评测：6大能力+6大边界</a><a href="https://csig.lexiangla.com/pages/0be95da3d040443bacab438f7c678c52">WorkBuddy + 乐享AI知识库联合方案</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 5. 运营市场场景 ===== -->
+  <div class="scene-category fade-up" data-category="marketing">
+    <div class="category-header cat-marketing">
+      <div class="category-icon">📢</div>
+      <div class="category-info">
+        <div class="category-name">运营市场场景</div>
+        <div class="category-desc">内容创作 · 竞品分析 · 用户洞察 · 舆情监控 · 公众号运营 · 活动策划</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">运营</span></div>
+        <div class="scene-body">
+          <div class="scene-title">内容创作与竞品分析</div><div class="scene-desc">搜资料一小时、组织语言一小时、排版半小时——交稿还被说没网感；竞品分析手搓耗时且视角局限。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>输入主题 → 自动搜集最新素材 → 15分钟出推文初稿<br>公众号/小红书/短视频脚本一键生成风格可定制；竞品分析输入名称和分析维度 → 推广策略复盘自动出</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>15分钟完成3篇小红书图文 | 公众号效率提升300%+ | 竞品分析 半天→30min</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://cloud.tencent.com/developer/article/2640886">我用WorkBuddy打造公众号内容工厂</a><a href="https://cloud.tencent.com/developer/article/2672937">WorkBuddy产品介绍与使用指南（腾讯云社区）</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">洞察</span></div>
+        <div class="scene-body">
+          <div class="scene-title">用户反馈与舆情洞察</div><div class="scene-desc">客户反馈堆成山翻聊天记录统计靠猜原因；舆情变化发现不及时品牌风险被动应对。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>反馈数据丢进来 → 按问题类型自动分类 → Top投诉原因标红<br>情感分布正面/负面/中性一目了然；舆情监控定时跑 → 评分异动立刻预警推送</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>客户反馈分析 从翻聊天→一键分类 | 舆情变化实时监控 | 复盘 从猜→数据驱动</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://cloud.tencent.com/developer/article/2672937">WorkBuddy产品介绍与使用指南（腾讯云社区）</a><a href="https://cloud.tencent.com/developer/article/2645796">腾讯云WorkBuddy实战：全场景智能体工作搭子</a><a href="https://cloud.tencent.com/developer/article/2637991">WorkBuddy重大升级：直连微信，全量开放</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 7. 销售场景 ===== -->
+  <div class="scene-category fade-up" data-category="sales">
+    <div class="category-header cat-sales">
+      <div class="category-icon">🤝</div>
+      <div class="category-info">
+        <div class="category-name">销售场景</div>
+        <div class="category-desc">售前材料 · 客服处理 · 方案响应</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">销售</span> <span class="lexiang-badge">乐享负责</span> <span class="wb-badge">WorkBuddy负责</span></div>
+        <div class="scene-body">
+          <div class="scene-title">售前响应与售后支持</div><div class="scene-desc">客户需求一来资料找不到或版本不统一，不同销售讲法不一致；售后培训慢，复杂问题升级多，历史案例难以复用。</div><div class="scene-flow"><strong>WorkBuddy 做法（乐享+WB联动）：</strong>乐享统一沉淀产品资料/行业方案/成功案例/话术模板 → 销售企微发一句话拿方案初稿和沟通邮件<br>售后遇到问题 → 自动整理排查路径和回复草稿 → 回复和新案例沉淀回知识库持续赋能</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>客户响应更快 | 销售口径一致 | 排查路径更标准 | 新人更容易上手 | 案例持续沉淀</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/dd473bab87ae46ab91a1049a101d35b4">WorkBuddy企业版主线逻辑说明材料</a><a href="https://csig.lexiangla.com/pages/0be95da3d040443bacab438f7c678c52">WorkBuddy + 乐享AI知识库联合方案</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 7. 教育与知识管理场景 ===== -->
+  <div class="scene-category fade-up" data-category="edu">
+    <div class="category-header cat-edu">
+      <div class="category-icon">🎓</div>
+      <div class="category-info">
+        <div class="category-name">教育与知识管理场景</div>
+        <div class="category-desc">备课出题 · 成绩分析 · 作业批改 · 课件制作 · 企业知识运营</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">教育</span></div>
+        <div class="scene-body">
+          <div class="scene-title">备课 / 出题 / 作业批改 / 成绩分析 / 课件制作</div><div class="scene-desc">出阅读理解题太花时间，网上题目千篇一律；作文批改逐篇看耗精力；成绩分析Excel算半天；做一个课件至少一小时。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>根据课文自动生成阅读理解题（选择+简答+参考答案），导出Word直接打印<br>成绩表自动分析：按班级统计各科平均分/最高分/及格率/优秀率，生成柱状图<br>根据Word文档一键生成商务风格课件PPT；批量读取学生作文/作业，自动评分并生成批改意见</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>出题从1h→5min | 成绩分析30min→30s | 课件制作1h→20min | 备课时间砍掉一半</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://cloud.tencent.com.cn/developer/article/2663569">高中数学老师的AI实战记录</a><a href="https://cloud.tencent.com/developer/article/2646827">拒绝"牛马"！WorkBuddy替你干活的神器</a></div>
+        </div>
+      </div>
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">知识</span> <span class="lexiang-badge">乐享负责</span> <span class="wb-badge">WorkBuddy负责</span></div>
+        <div class="scene-body">
+          <div class="scene-title">企业知识运营</div><div class="scene-desc">知识散在文档/网盘/乐享/业务系统和群聊里——员工找不到找不准，合规敏感岗位担心AI乱答。</div><div class="scene-flow"><strong>WorkBuddy 做法（乐享+WB联动）：</strong>WB通过Agent Suite调用腾讯文档/网盘/乐享三大底座 → 直接问制度流程产品资料和项目经验<br>乐享负责知识治理确保可信可控可追溯 → 数字员工基于企业知识完成问答分析和材料生成</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>知识找得到 | 回答答得准 | 权限管得住 | 结果可追溯</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/0be95da3d040443bacab438f7c678c52">WorkBuddy + 乐享AI知识库联合方案</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 9. 医疗行业场景 ===== -->
+  <div class="scene-category fade-up" data-category="medical">
+    <div class="category-header cat-medical">
+      <div class="category-icon">🏥</div>
+      <div class="category-info">
+        <div class="category-name">医疗行业场景</div>
+        <div class="category-desc">药品说明 · 健康管理 · 临床科研 · 医药市场</div>
+      </div>
+    </div>
+    <div class="scene-cards">
+
+      <div class="scene-card">
+        <div class="scene-header"><span class="scene-icon">医疗</span></div>
+        <div class="scene-body">
+          <div class="scene-title">药品说明书检索与健康管理</div><div class="scene-desc">药品说明书满纸医学术语普通人看不懂；慢病患者多种药物并用担心相互作用却无处咨询。</div><div class="scene-flow"><strong>WorkBuddy 做法：</strong>输入药品名 → 卓睦鸟大模型自动把专业术语翻译成"用药大白话"<br>输出专业解读+禁忌标注+用药建议；中康科技入驻技能商店，上线医疗垂类首个Skill"药品说明书检索"</div><div style="margin-top:8px;padding:8px 12px;background:#F0FFF5;border-radius:6px;font-size:12px;color:var(--green)"><strong>提效效果：</strong>专业药品说明→大白话解读 | 医疗AI从平台能力开放→垂直生态共建 | WorkBuddy场景破圈至医疗</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/d278d8c25c274a47b627fd875925aae2">腾讯企业版龙虾方案医疗行业应用场景分享</a><a href="https://finance.sina.com.cn/wm/2026-04-19/doc-inhuzsuy1306415.shtml">全国首个！腾讯"龙虾"上线医疗Skill</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- 5. 使用案例 -->
+<section class="section" id="cases">
+  <div class="fade-up">
+    <p class="section-tag">05 / Use Cases</p>
+    <h2 class="section-title">使用案例</h2>
+    <div class="case-grid">
+      <!-- 案例1：新加坡AI简历筛选 -->
+      <div class="case-card">
+        <div class="case-content">
+          <div class="case-num">01</div>
+          <div class="case-title">新加坡团队：AI 简历筛选提效 90%</div>
+          <div class="case-desc">
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">客户</b>　腾讯新加坡招聘团队（3人）</div>
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">行业</b>　人力资源 / 招聘</div>
+            <div style="margin-bottom:10px"><b style="color:#d93025">痛点</b>　每月200+简历需筛选，每份5-10分钟，占HR 60%以上时间；不同HR评估标准不统一，漏筛优质候选人；候选人反馈慢（3-5天），体验评分仅3.2/5</div>
+            <div style="margin-bottom:10px"><b style="color:#1e8e3e">方案</b>　用WorkBuddy搭建"AI初筛+人工复核"两阶段流程：输入JD和简历，自动解析并按4维度（技能/经验/教育/稳定性）逐项评分，输出匹配度+录用建议+亮点+风险</div>
+            <div><b style="color:#f9ab00">效果</b>　筛选时间从5小时/天降到30分钟/天（↓90%）；筛选准确率70%→95%；面试转化率15%→28%；候选人反馈3-5天→当天</div>
+          </div>
+          <div class="case-metric">提效90% | 准确率70%→95% | 面试转化率↑87% | 反馈当天</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/bfce4bba7e754e38826b50396ced359d">新加坡-AI简历筛选提效90%</a></div>
+        </div>
+      </div>
+
+      <!-- 案例2：医疗Skill -->
+      <div class="case-card">
+        <div class="case-content">
+          <div class="case-num">02</div>
+          <div class="case-title">中康科技：医疗行业首个 Skill 落地</div>
+          <div class="case-desc">
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">客户</b>　中康科技（卓睦鸟医疗大模型）</div>
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">行业</b>　医疗健康</div>
+            <div style="margin-bottom:10px"><b style="color:#d93025">痛点</b>　药品说明书全是医学术语，普通人看不懂；患者用药依从性低，误服漏服风险大；医药行业知识壁垒高，跨领域检索困难</div>
+            <div style="margin-bottom:10px"><b style="color:#1e8e3e">方案</b>　中康科技入驻WorkBuddy技能商店，将MedBench/CMB双榜第一的卓睦鸟大模型封装为AI Skill——输入药品名，自动检索说明书并翻译成"用药大白话"：适应症、用法用量、禁忌、注意事项全用普通人能懂的话说清楚</div>
+            <div><b style="color:#f9ab00">效果</b>　医疗垂类首个Skill上线；覆盖3000+医药工业、5000+连锁药店、18105家二级以上医院、4.1亿消费者</div>
+          </div>
+          <div class="case-metric">MedBench/CMB双榜第一 | 覆盖4.1亿消费者 | 医疗垂类首个Skill</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://pcedu.pconline.com.cn/2133/21332931.html">行业首发！腾讯健康携手中康科技，首个医疗垂类Skill上线WorkBuddy（太平洋电脑）</a><a href="https://china.qianlong.com/2026/0417/8656251.shtml">腾讯健康携手中康科技，首个医疗垂类Skill上线WorkBuddy（千龙网）</a></div>
+        </div>
+      </div>
+
+      <!-- 案例3：金碧物业 -->
+      <div class="case-card">
+        <div class="case-content">
+          <div class="case-num">03</div>
+          <div class="case-title">金碧物业：从"填很多表"到"聊几句天"</div>
+          <div class="case-desc">
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">客户</b>　金碧物业 × 盈绰数科</div>
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">行业</b>　物业 / 房地产服务</div>
+            <div style="margin-bottom:10px"><b style="color:#d93025">痛点</b>　一线员工流动性高，物业系统操作复杂，培训成本高；管家接到报修电话需7-12步系统操作，最长120秒才能完成工单创建；账单提醒发送同样繁琐</div>
+            <div style="margin-bottom:10px"><b style="color:#1e8e3e">方案</b>　盈绰数科携手腾讯WorkBuddy，将金碧物业多年沉淀的业务流程与管理标准封装为可通过自然语言调用的行业Skill——管家只需口述"12楼204门口有积水"，系统自动识别房号、事件类型及优先级，3秒内完成工单创建并派发；收费场景同理，一句话即可发送账单提醒</div>
+            <div><b style="color:#f9ab00">效果</b>　工单处理效率提升80%+；7-12步操作→1句口语指令3秒执行；已在工单、收费两大核心场景落地，为物业行业AI提效提供全新范本</div>
+          </div>
+          <div class="case-metric">工单效率↑80% | 1句话3秒出单 | 物业行业首个AI提效范本</div>
+          <div class="material-links"><div class="material-links-title">🔗 来源</div><a href="https://www.jiemian.com/article/14491120.html">WorkBuddy重塑智慧物业服务体验</a></div>
+        </div>
+      </div>
+
+      <!-- 案例4：一人店铺 -->
+      <div class="case-card">
+        <div class="case-content">
+          <div class="case-num">04</div>
+          <div class="case-title">一人店铺：WorkBuddy 数字工作室电商内容全链路实践</div>
+          <div class="case-desc">
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">类型</b>　WorkBuddy 团队出品 · 完整实践案例</div>
+            <div style="margin-bottom:10px"><b style="color:#1a73e8">场景</b>　电商 / 内容生产 / 一个人做一整个店铺</div>
+            <div style="margin-bottom:10px"><b style="color:#d93025">痛点</b>　一个人做电商内容生产：产品海报要设计、主图视频要拍要剪、详情页要写要排版，传统做法需要设计师+剪辑师+文案三个人，成本高周期长</div>
+            <div style="margin-bottom:10px"><b style="color:#1e8e3e">方案</b>　WorkBuddy搭建"数字工作室"——用 poster-factory 生成产品海报、video-factory 制作主图视频、clip-factory 短视频剪辑，三套AI工厂流水线串联，从产品图到完整店铺内容一条龙产出。底层架构：Codebase（知识库）+ Harness（编排引擎）+ LLM（大模型）协同执行</div>
+            <div><b style="color:#f9ab00">效果</b>　一个人完成一整个店铺内容生产；海报+视频+详情页全链路AI产出；从3人团队→1人+AI数字工作室</div>
+          </div>
+          <div class="case-metric">1人=1店铺 | 海报/视频/详情页全链路 | 3人团队→1人+AI</div>
+          <div class="material-links"><div class="material-links-title">🔗 素材链接</div><a href="https://csig.lexiangla.com/pages/0fd1e60462cb473bb79b93b0d47ae189">一人店铺完整实践案例（含交付包+报告）</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 内网素材索引 -->
+<section class="section" id="materials">
+  <div class="fade-up">
+    <p class="section-tag">06 / Material Index</p>
+    <h2 class="section-title">内网素材索引</h2>
+    <p class="section-desc">以下是本次搜索整理的素材清单，优先收录内网乐享知识库素材，补充腾讯云官方社区和腾讯新闻报道</p>
+    <table class="material-table">
+      <thead><tr><th style="width:40px">#</th><th>材料名称</th><th>所在知识库</th><th style="width:80px">链接</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>WorkBuddy办公场景01_高效信息沟通_最佳实践案例</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/e769ffa538b64e888380bf1659f58e9e">查看</a></td></tr>
+        <tr><td>2</td><td>WorkBuddy企业版主线逻辑说明材料</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/dd473bab87ae46ab91a1049a101d35b4">查看</a></td></tr>
+        <tr><td>3</td><td>WorkBuddy + 乐享AI知识库联合方案</td><td>日常记录</td><td><a href="https://csig.lexiangla.com/pages/0be95da3d040443bacab438f7c678c52">查看</a></td></tr>
+        <tr><td>4</td><td>WorkBuddy 提效案例：构建个人学术信息助手</td><td>玩转亮点功能</td><td><a href="https://csig.lexiangla.com/pages/e2cf5cbc5a8f44d28176829c92dbbe6e">查看</a></td></tr>
+        <tr><td>5</td><td>【案例】新加坡-AI简历筛选提效90%</td><td>OHR AI Sharing</td><td><a href="https://csig.lexiangla.com/pages/bfce4bba7e754e38826b50396ced359d">查看</a></td></tr>
+        <tr><td>6</td><td>传统AI聊天 vs WorkBuddy干活_最佳实践案例</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/b96442a34bef4915b0e42ac078116d29">查看</a></td></tr>
+        <tr><td>7</td><td>workbuddy营销部门或市场部门场景</td><td>培训售前素材</td><td><a href="https://csig.lexiangla.com/pages/ae018f44e3d64f96bfc6425df69463ed">查看</a></td></tr>
+        <tr><td>8</td><td>TAPD + 乐享 + WorkBuddy 联动方案</td><td>工作日志</td><td><a href="https://csig.lexiangla.com/pages/98928c2886ac42e58d289bd6c8878a8d">查看</a></td></tr>
+        <tr><td>9</td><td>Workbuddy 应用场景举例</td><td>演示物料</td><td><a href="https://csig.lexiangla.com/pages/a704a6b92f864d40a92eefc363fd3dc6">查看</a></td></tr>
+        <tr><td>10</td><td>腾讯企业版龙虾方案医疗行业应用场景分享</td><td>乐享知识库</td><td><a href="https://csig.lexiangla.com/pages/d278d8c25c274a47b627fd875925aae2">查看</a></td></tr>
+        <tr><td>11</td><td>workbuddy课纲示例</td><td>培训售前素材</td><td><a href="https://csig.lexiangla.com/pages/e8518a2a717742748425828d4ea5d754">查看</a></td></tr>
+        <tr><td>12</td><td>WorkBuddy办公场景01：高效信息沟通（视频）</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/a7d93805da24427e98c01b1880a3eca4">查看</a></td></tr>
+        <tr><td>13</td><td>行业首发！腾讯健康携手中康科技，首个医疗垂类Skill上线WorkBuddy</td><td>太平洋电脑</td><td><a href="https://pcedu.pconline.com.cn/2133/21332931.html">查看</a></td></tr>
+        <tr><td>14</td><td>腾讯健康携手中康科技，首个医疗垂类Skill上线WorkBuddy</td><td>千龙网</td><td><a href="https://china.qianlong.com/2026/0417/8656251.shtml">查看</a></td></tr>
+        <tr><td>15</td><td>WorkBuddy重塑智慧物业服务体验</td><td>界面新闻</td><td><a href="https://www.jiemian.com/article/14491120.html">查看</a></td></tr>
+        <tr><td>16</td><td>WorkBuddy办公场景02_加速文档写作_最佳实践案例</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/e11b9842cb52481cb45d50ab0b60d8c1">查看</a></td></tr>
+        <tr><td>17</td><td>WorkBuddy办公场景03_PPT生成与处理_最佳实践案例</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/a7e010a728bb4359a5ba659ca852230a">查看</a></td></tr>
+        <tr><td>18</td><td>WorkBuddy办公场景04_可视化数据处理_最佳实践案例</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/8745166df6e6492f8aab3c039fd838ab">查看</a></td></tr>
+        <tr><td>19</td><td>WorkBuddy办公场景05_会议文档高效协同_最佳实践案例</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/dad0d3e2685143d4b61e64f9eebb9b30">查看</a></td></tr>
+        <tr><td>20</td><td>一人店铺完整实践案例（含交付包+报告）</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/0fd1e60462cb473bb79b93b0d47ae189">查看</a></td></tr>
+        <tr><td>21</td><td>案例实践总目录（WorkBuddy实践&案例）</td><td>WorkBuddy资料库</td><td><a href="https://csig.lexiangla.com/pages/9fe28df6d2864d87bc65040abea0e80f">查看</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">WorkBuddy</p>
+  <p style="margin-bottom:4px">一句话让 AI 替你上班</p>
+  <p>全场景职场 AI 原生智能体工作台 | 腾讯 CSIG · 2026</p>
+</footer>
+
+<script>
+// Scene preview: realistic chat mockups + expand/collapse + tab filter
+(function(){
+  var P={
+    '高效信息沟通':{
+      u:'今天38封未读邮件帮我处理一下',
+      a:'<span class="ai-label">已分析38封邮件</span>\n\n<span class="danger-text">紧急 · 2封</span>  张总催项目进度、客户报价确认\n<span class="highlight">需回复 · 5封</span>  跨部门协作、HR收集表格\n<span class="dim">仅知会 · 15封</span>  例会通知、系统公告\n<span class="dim">可忽略 · 16封</span>  营销推送、旧讨论回复\n\n<span class="sep">─────────</span>\n张总那封我写了回复草稿，你确认下措辞：\n<span class="result-line">"张总好，项目A本周完成UAT，预计下周三上线，详细排期见附件。"</span>\n客户报价那封，我整理了三个方案对比表，也帮你拟了英文回复。'
+    },
+    '周报':{
+      u:'整理下本周重点事项和风险点',
+      a:'<span class="ai-label">已汇总3个项目</span>\n\n<span class="done-text">项目A · 进度正常</span>\n  UAT完成90%，下周三上线，无阻塞\n\n<span class="done-text">项目B · 进度正常</span>\n  方案已过审，本周进入开发\n\n<span class="warn-text">项目C · 需关注</span>\n  客户新增2个需求未确认，影响排期\n  → 建议：周五前拉齐客户需求确认会\n\n<span class="sep">─────────</span>\n周报草稿已生成，我放到你桌面了：<span class="file-line">本周工作周报_0526.docx</span>'
+    },
+    '加速文档写作':{
+      u:'Q2经营数据在桌面上，帮我生成一份复盘报告',
+      a:'<span class="ai-label">读取 Q2经营数据.xlsx</span>\n\n数据概况：3个业务线，12项核心指标\n\n<span class="done-text">报告已生成 ✓</span>\n\n核心发现：\n  总营收：<span class="highlight">¥4,230万</span>（同比+18%）\n  产品线A贡献62%，环比增长最快\n  <span class="warn-text">产品线B毛利率下降3%</span>，建议优化成本结构\n\n<span class="file-line">📄 Q2经营复盘报告.docx → 已放桌面</span>\n<span class="file-line">📄 Q2经营复盘报告.html → 交互版已生成</span>\n<span class="dim">Word版可直接打印，HTML版可粘贴内网发布</span>'
+    },
+    '会议文档':{
+      u:'把刚才的会议录音整理成纪要，写到腾讯文档里',
+      a:'<span class="ai-label">识别会议录音中...</span>\n\n<span class="done-text">纪要已生成 ✓</span>\n\n会议主题：Q3产品规划讨论\n参会人：张总、李经理、王工\n\n决议事项：\n  1. 新功能优先级调整，排期8月底\n  2. 技术方案由王工本周五前输出\n\n待办：\n  <span class="warn-text">张总</span> 确认预算 → 截止6月5日\n  <span class="highlight">李经理</span> 更新PRD → 截止6月3日\n\n<span class="file-line">📄 腾讯文档已创建 → 纪要链接已发企微群</span>\n<span class="dim">下次会议已根据决议自动预约：6月10日14:00</span>'
+    },
+    '移动办公':{
+      u:'把客户项目的案例和上次会后纪要发我',
+      a:'<span class="ai-label">检索中...</span>\n\n从知识库找到这些：\n<span class="file-line">📎 客户AI提效方案_v3.pdf</span>\n<span class="file-line">📎 0520客户沟通纪要.docx</span>\n<span class="file-line">📎 行业AI应用案例.pptx</span>\n\n另外本地还有一份报价单，要一起发吗？\n<span class="file-line">📎 项目报价_2026Q2.xlsx</span>\n\n<span class="dim">（已发到你企微，直接打开就行）</span>'
+    },
+    '文件整理':{
+      u:'帮我把桌面这些素材做成一个20页的产品介绍PPT',
+      a:'<span class="ai-label">读取素材中...</span>\n\n找到以下素材文件：\n<span class="file-line">📄 产品介绍_初稿.docx（8页内容）</span>\n<span class="file-line">🖼️ 产品截图×6</span>\n<span class="file-line">📊 竞品对比表.xlsx</span>\n<span class="file-line">📄 客户案例3篇</span>\n\n<span class="sep">─────────</span>\n<span class="done-text">PPT已生成 ✓</span>  20页，商务蓝风格\n包含：封面→产品概述→核心能力→场景→案例→报价→尾页\n\n<span class="file-line">📂 WorkBuddy产品介绍.pptx → 已放桌面</span>\n<span class="dim">你看看排版，要调哪页跟我说</span>'
+    },
+    '自动化定时':{
+      u:'设置个定时任务，每周一早上8点把行业周报发到企微群里',
+      a:'<span class="ai-label">定时任务已创建</span>\n\n任务名称：行业周报自动推送\n执行周期：每周一 08:00\n推送渠道：企微-行业动态群\n\n内容配置：\n  1. 抓取本周行业热点（自动搜索5个关键词）\n  2. AI提炼Top5要点\n  3. 生成周报Markdown格式\n  4. 自动推送群消息\n\n<span class="done-text">首次执行：下周一 08:00</span>\n<span class="dim">可随时在自动化管理里修改关键词和推送时间</span>'
+    },
+    '数据分析':{
+      u:'这个月销售数据帮我分析一下，表格在桌面上',
+      a:'<span class="ai-label">读取 sales_05.xlsx</span>\n\n数据概况：2,340条记录，6个字段\n发现3处异常值已标红处理\n\n<span class="sep">─────────</span>\n\n本月核心指标：\n  总销售额：<span class="highlight">¥1,284万</span>（环比+12.3%）\n  成单数：186笔（环比+8%）\n  客单价：<span class="highlight">¥6.9万</span>（环比+4%）\n\n<span class="warn-text">需关注：</span>\n  华东区下滑15%，主力客户续约延迟\n  产品线B退货率从3%升至7%\n\n<span class="file-line">📊 可视化图表已生成 → 桌面/sales_05_analysis.html</span>'
+    },
+    '自动化工单':{
+      u:'12楼204门口有积水，帮我建个工单派给物业',
+      a:'<span class="ai-label">工单创建中...</span>\n\n已自动识别：\n  房号：12楼204\n  事件：积水\n  类型：设施报修\n  优先级：<span class="danger-text">高</span>\n\n<span class="done-text">工单已创建 ✓</span>\n  工单号：WO-20260528-0047\n  派发部门：工程维修组\n  负责人：张师傅\n  预计响应：30分钟内\n\n<span class="dim">已通知张师傅企微，处理完会自动回传状态</span>'
+    },
+    '招聘提效':{
+      u:'这50份产品经理简历帮我筛一下，要3年以上经验、有B端背景的',
+      a:'<span class="ai-label">已解析50份简历</span>\n\n<span class="done-text">推荐 · 8人</span>\n  王XX · 5年B端产品 · 前字节 · 匹配度92%\n  李XX · 4年SaaS · 前用友 · 匹配度88%\n  ...共8人\n\n<span class="highlight">待定 · 15人</span>\n  经验够但行业偏C端，或年限差半年\n\n<span class="dim">不匹配 · 27人</span>\n  经验不足/行业不符/岗位类型偏差\n\n<span class="sep">─────────</span>\n详细评分表已生成：<span class="file-line">PM候选人评分表.xlsx</span>\n要不要我把推荐那8人的简历重点再整理一份？'
+    },
+    '新人培训':{
+      u:'帮我生成一份产品经理岗位新人第一周的学习计划',
+      a:'<span class="ai-label">基于岗位SOP生成</span>\n\n<span class="done-text">5天学习清单 ✓</span>\n\nDay1 公司与团队\n  - 组织架构、产品线全景图\n  - 读3份核心产品文档\n\nDay2 产品流程\n  - 需求评审→开发→上线全流程\n  - 跟一场需求评审会（旁听）\n\nDay3 工具与规范\n  - Jira/Confluence操作指南\n  - PRD模板、设计规范\n\nDay4 实操练习\n  - 写一份模拟PRD（我出题）\n  - 数据看板搭建\n\nDay5 复盘答疑\n  - 本周学习笔记整理\n  - 1on1带教复盘\n\n<span class="file-line">📄 新人学习计划_PM_Week1.docx → 已放桌面</span>'
+    },
+    '发票报销':{
+      u:'桌面上45张发票照片帮我整理成报销表',
+      a:'<span class="ai-label">OCR识别中...</span>\n\n<span class="done-text">45张发票已全部识别 ✓</span>\n\n整理结果：\n  交通费：12张，合计 ¥3,240\n  餐饮费：18张，合计 ¥5,680\n  住宿费：8张，合计 ¥12,400\n  办公用品：7张，合计 ¥1,860\n  <span class="highlight">总计：¥23,180</span>\n\n<span class="warn-text">注意：</span>第23张日期模糊，已标注需人工确认\n\n<span class="file-line">📄 报销明细_05月.xlsx → 已放桌面</span>\n<span class="dim">发票照片已按"客户名+日期+金额"重命名归档</span>'
+    },
+    '代码生成':{
+      u:'帮我审查一下src目录下的代码，重点看安全问题和性能',
+      a:'<span class="ai-label">扫描 src/ 目录</span>\n  23个文件，4,120行代码\n\n<span class="danger-text">安全风险 · 1处</span>\n  src/utils/auth.js:12 - 硬编码密钥，建议移到环境变量\n\n<span class="warn-text">性能问题 · 3处</span>\n  src/api/list.js:45 - 循环内重复创建Promise\n  src/components/Table.vue:88 - 未做分页，数据量大时卡顿\n  src/store/data.js:22 - 深拷贝过重，建议浅拷贝+immutable\n\n<span class="highlight">优化建议 · 8条</span>\n  可提取公共Hook×2、类型补充×3、注释补全×3\n\n<span class="file-line">📄 code_review_0527.md → 已放项目根目录</span>'
+    },
+    'PRD':{
+      u:'根据昨天的需求讨论写一份PRD，会议纪要在桌面上',
+      a:'<span class="ai-label">读取会议纪要中...</span>\n\n从纪要中提取到以下需求点：\n  - 用户标签管理（新建/编辑/批量操作）\n  - 标签规则引擎（自动打标）\n  - 标签数据分析看板\n\n<span class="done-text">PRD已生成 ✓</span>\n\n结构：\n  1. 需求背景与目标\n  2. 用户角色与场景\n  3. 功能清单（3个模块12个功能点）\n  4. 详细交互说明\n  5. 验收标准\n  6. 排期建议\n\n<span class="file-line">📄 用户标签系统PRD_v1.docx → 已放桌面</span>\n<span class="dim">要不要我同时出一份技术方案？</span>'
+    },
+    '合同审查':{
+      u:'这10份供应商合同帮我过一遍，标注风险条款',
+      a:'<span class="ai-label">逐份审查中...</span>\n\n<span class="danger-text">高风险 · 2份</span>\n  合同#3：违约金条款比例偏高（合同额30%），建议调至15%\n  合同#7：知识产权归属表述模糊，存在我方成果被对方主张风险\n\n<span class="warn-text">中风险 · 4份</span>\n  合同#1,4,6,8：付款周期/验收标准/保密期限等条款有细节偏差\n\n<span class="done-text">合规通过 · 4份</span>\n  合同#2,5,9,10：条款规范，无异常\n\n<span class="sep">─────────</span>\n<span class="file-line">📄 合同风险审查报告_0527.docx → 已放桌面</span>\n每份合同的具体风险条款和高亮标注都在报告里'
+    },
+    '内容创作':{
+      u:'帮我写一篇小红书推文，主题是AI办公工具推荐',
+      a:'<span class="ai-label">搜集素材+生成中</span>\n\n给你3个标题备选：\n  1. 打工人必看！这个AI工具让我准时下班了\n  2. 别再手动搬砖了！AI办公神器实测\n  3. 老板以为我加班，其实我在用AI摸鱼\n\n已选标题1生成正文：\n\n🔥 打工人必看！这个AI工具让我准时下班了\n\n姐妹们我悟了！自从用了这个腾讯出的AI工作搭子...（正文380字）\n\n标签：#AI办公 #效率工具 #打工人的快乐\n\n<span class="file-line">📄 小红书推文_AI办公.docx → 已放桌面</span>\n<span class="dim">配图建议：3张工作场景截图+1张对比图</span>'
+    },
+    '用户反馈':{
+      u:'这季度的客户反馈帮我整理一下，总结主要问题',
+      a:'<span class="ai-label">分析327条反馈</span>\n\n<span class="danger-text">Top3 投诉</span>\n  1. 导出功能慢（68条提及）\n  2. 移动端体验差（45条）\n  3. 权限配置复杂（31条）\n\n情感分布：\n  正面 42% | 中性 35% | 负面 23%\n\n<span class="done-text">改进建议</span>\n  → 导出加异步队列+进度条\n  → 移动端优先修复核心流程\n  → 权限页加配置向导\n\n<span class="file-line">📄 Q2客户反馈分析报告.docx → 已放桌面</span>\n<span class="file-line">📊 情感分布图.png → 已放桌面</span>'
+    },
+    '售前响应':{
+      u:'客户要一份制造业AI办公解决方案，帮我出个初稿',
+      a:'<span class="ai-label">检索知识库...</span>\n\n匹配到以下素材：\n<span class="file-line">📄 制造业AI办公场景白皮书.pdf</span>\n<span class="file-line">📄 行业客户案例方案.pptx</span>\n<span class="file-line">📄 场景沟通纪要.docx</span>\n\n<span class="done-text">方案初稿已生成 ✓</span>\n\n结构：\n  1. 制造业办公痛点分析\n  2. AI办公解决方案架构\n  3. 核心场景（6个）\n  4. 客户案例（3个行业标杆）\n  5. 实施路线图\n  6. 报价方案框架\n\n<span class="file-line">📄 制造业AI办公解决方案_v1.pptx → 已放桌面</span>\n<span class="dim">行业标杆案例放在第4部分，客户比较关注落地细节</span>'
+    },
+    '备课':{
+      u:'根据第三单元课文出10道阅读理解题，带参考答案',
+      a:'<span class="ai-label">读取课文内容中...</span>\n\n<span class="done-text">10道题已生成 ✓</span>\n\n选择题（5道）：\n  1. 文章主旨是？ A.科技发展 B.人与自然√ C.社会变迁 D.文化传承\n  2. 第二段"那片海"象征？ ...\n  3-5 略\n\n简答题（5道）：\n  6. 作者为什么要用对比手法？\n  7. 结尾句的含义是什么？\n  8-10 略\n\n参考答案：\n  1.B 2.那片海象征... 6.对比手法是为了...\n\n<span class="file-line">📄 第三单元阅读理解题.docx → 已放桌面</span>\n<span class="dim">难度中等偏上，要调难度可以跟我说</span>'
+    },
+    '企业知识':{
+      u:'公司差旅报销制度是什么？住宿标准多少？',
+      a:'<span class="ai-label">检索企业知识库</span>\n\n来源：差旅报销管理制度 V3.2（2026年1月更新）\n\n住宿标准：\n  一线城市：≤<span class="highlight">600元/晚</span>\n  二线城市：≤<span class="highlight">450元/晚</span>\n  其他城市：≤<span class="highlight">350元/晚</span>\n\n交通标准：\n  高铁/动车二等座，飞机经济舱\n  市内交通实报实销（需发票）\n\n审批流程：\n  ≤3000元：部门经理审批\n  3000-10000元：总监审批\n  >10000元：VP审批\n\n<span class="dim">（以上内容来自乐享知识库，制度文件最后更新于2026.01.15）</span>'
+    },
+    '药品说明':{
+      u:'布洛芬有什么用药注意事项？老人能吃吗？',
+      a:'<span class="ai-label">药品说明书检索</span>\n  来源：卓睦鸟医疗大模型\n\n用法用量：\n  成人：每次200-400mg，间隔4-6小时\n  每日最大剂量：<span class="highlight">1200mg</span>\n\n<span class="danger-text">禁忌事项</span>\n  · 消化道溃疡患者禁用\n  · 严重肝肾功能不全者禁用\n  · 孕晚期（孕30周后）禁用\n\n<span class="warn-text">老年人注意</span>\n  · 65岁以上建议从最低剂量起用\n  · 长期服用需监测肾功能\n  · 避免与阿司匹林同服\n\n<span class="dim">（以上信息仅供参考，具体用药请遵医嘱）</span>'
+    }
+  };
+
+  document.querySelectorAll('.scene-card').forEach(function(card){
+    var title=(card.querySelector('.scene-title')||{}).textContent||'';
+    var data=null;
+    for(var k in P){if(title.indexOf(k)!==-1){data=P[k];break;}}
+    if(!data)return;
+    // Wrap existing content into .scene-content
+    var contentDiv=document.createElement('div');
+    contentDiv.className='scene-content';
+    while(card.firstChild)contentDiv.appendChild(card.firstChild);
+    card.appendChild(contentDiv);
+    // Add preview as right panel
+    var div=document.createElement('div');
+    div.className='scene-preview';
+    div.innerHTML='<div class="preview-header">'+
+      '<div class="preview-avatar">W</div>'+
+      '<span class="preview-header-name">WorkBuddy</span>'+
+      '<span class="preview-header-status">· 在线</span>'+
+    '</div>'+
+    '<div class="preview-body">'+
+      '<div class="preview-user">'+data.u+'</div>'+
+      '<div class="preview-ai">'+data.a+'</div>'+
+    '</div>';
+    card.appendChild(div);
+  });
+
+  // Tab filter
+  var tabs=document.querySelectorAll('#sceneTabs .scene-tab');
+  var cats=document.querySelectorAll('.scene-category[data-category]');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      tabs.forEach(function(t){t.classList.remove('active')});
+      this.classList.add('active');
+      var filter=this.getAttribute('data-filter');
+      cats.forEach(function(cat){
+        if(filter==='all'||cat.getAttribute('data-category')===filter){
+          cat.classList.remove('hidden');
+        }else{
+          cat.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Nav scroll effect & active link
+const nav = document.getElementById('nav');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

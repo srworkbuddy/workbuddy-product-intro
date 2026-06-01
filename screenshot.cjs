@@ -4,8 +4,9 @@ const path = require('path');
 (async () => {
   const browser = await puppeteer.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-crashpad', '--disable-dev-shm-usage'],
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-crashpad', '--disable-dev-shm-usage', '--disable-crashpad-for-testing'],
+    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    ignoreDefaultArgs: ['--enable-automation']
   });
   const page = await browser.newPage();
   

@@ -9,6 +9,7 @@ const path = require('path');
     ignoreDefaultArgs: ['--enable-automation']
   });
   const page = await browser.newPage();
+  await page.setViewport({width: 1200, height: 800, deviceScaleFactor: 3});
   
   const htmlPath = path.resolve('/Users/annycheng/WorkBuddy/2026-05-26-11-02-48/WorkBuddy产品介绍_长图.html');
   await page.goto('file://' + htmlPath, { waitUntil: 'networkidle0' });
@@ -16,8 +17,7 @@ const path = require('path');
   const body = await page.$('body');
   await body.screenshot({
     path: '/Users/annycheng/WorkBuddy/2026-05-26-11-02-48/WorkBuddy产品介绍_长图.png',
-    type: 'png',
-    deviceScaleFactor: 2
+    type: 'png'
   });
   
   console.log('PNG exported successfully');
